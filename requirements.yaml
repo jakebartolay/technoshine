@@ -1,0 +1,16 @@
+packages:
+  "framer-motion": "For smooth futuristic animations and scroll effects"
+  "react-hook-form": "For robust contact form state management"
+  "@hookform/resolvers": "For zod validation integration with react-hook-form"
+
+images:
+  - path: "artifacts/technoshine/public/images/hero-bg.png"
+    description: "Abstract futuristic dark cyberspace background with subtle glowing orange neon data lines, geometric structures, and deep black void"
+    aspect_ratio: "16:9"
+  - path: "artifacts/technoshine/public/images/about-tech.png"
+    description: "Industrial sci-fi server room or quantum computer core with sleek black metal surfaces illuminated by bright neon orange glowing lights"
+    aspect_ratio: "16:9"
+
+notes:
+  - Using @workspace/api-client-react for contact form mutations
+  - Theme is strictly dark mode with bright orange accents

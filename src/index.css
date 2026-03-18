@@ -1,0 +1,26 @@
+/* src/index.css */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap');
+/* Tailwind directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-background text-foreground font-sans;
+}
+
+h1 {
+  @apply font-hero font-black tracking-tighter uppercase;
+}
+
+h2, h3, h4, h5, h6 {
+  @apply font-display font-bold tracking-wider uppercase;
+}
+
+@layer utilities {
+  .glow-text {
+    text-shadow:
+      0 0 10px hsl(var(--primary) / 0.5),
+      0 0 20px hsl(var(--primary) / 0.3);
+  }
+}
