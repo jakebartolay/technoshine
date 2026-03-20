@@ -11,9 +11,11 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           <div className="md:col-span-2">
             <Link href="/" className="flex items-center gap-2 mb-4 group inline-flex">
-              <span className="font-display font-bold text-xl tracking-widest text-white">
-                TECHNOSHINE
-              </span>
+              <img
+                src="/logo/companylogo1.png"
+                alt="TechnoShine"
+                className="h-10 w-auto"
+              />
             </Link>
             <p className="text-white/50 text-sm max-w-sm font-light">
               Premium marble and natural stone restoration specialists. Bringing your surfaces back to life with precision, care, and lasting results.

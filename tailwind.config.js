@@ -12,7 +12,8 @@ module.exports = {
         border: '#d1d1d1',
       },
       fontFamily: {
-        sans: ['Montserrat', 'sans-serif'],
+        sans: ['Poppins', 'sans-serif'],
+        // display: ['Poppins', 'sans-serif'],
         display: ['Rajdhani', 'sans-serif'],
         hero: ['Orbitron', 'sans-serif'],
       },

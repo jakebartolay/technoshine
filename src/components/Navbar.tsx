@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
@@ -53,9 +53,11 @@ export function Navbar() {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
-            <span className={`font-display font-bold text-xl tracking-widest transition-colors group-hover:text-primary ${isScrolled ? "text-foreground" : "text-white"}`}>
-              TECHNOSHINE
-            </span>
+            <img
+              src={isScrolled ? "/logo/companylogo2.png" : "/logo/companylogo1.png"}
+              alt="TechnoShine"
+              className="h-10 w-auto transition-opacity duration-300"
+            />
           </Link>
 
           {/* Desktop Nav */}

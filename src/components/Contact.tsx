@@ -80,9 +80,9 @@ export function Contact() {
                 <h4 className="font-display text-lg text-foreground">Location</h4>
               </div>
               <p className="text-muted-foreground font-mono text-sm">
-                14 Stoneworks Avenue<br />
-                London, EC1A 1BB<br />
-                United Kingdom
+                Unit 110 Union Square Condominium,<br />
+                15th Avenue, Cubao, Quezon City,<br />
+                Philippines.
               </p>
             </div>
 
@@ -92,7 +92,7 @@ export function Contact() {
                 <h4 className="font-display text-lg text-foreground">Email Us</h4>
               </div>
               <p className="text-muted-foreground font-mono text-sm">
-                info@technoshine.co.uk<br />
+                contactus@technoshineph.com<br />
                 quotes@technoshine.co.uk
               </p>
             </div>
@@ -104,7 +104,7 @@ export function Contact() {
               </div>
               <p className="text-muted-foreground font-mono text-sm">
                 +44 (0)20 7946 0321<br />
-                Mon – Sat, 8am – 6pm
+                Mon – Sat, 9am – 6pm
               </p>
             </div>
           </motion.div>

@@ -5,8 +5,8 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 const projects = [
   {
     label: "Marble Floor Polish",
-    before: "before-1.png",
-    after: "after-1.png",
+    before: "before-1.jpeg",
+    after: "after-1.jpeg",
   },
   {
     label: "Countertop Restoration",
@@ -14,9 +14,9 @@ const projects = [
     after: "after-2.png",
   },
   {
-    label: "Staircase Revival",
-    before: "before-3.png",
-    after: "after-3.png",
+    label: "Floor Restoration",
+    before: "before-3.jpg",
+    after: "after-3.jpg",
   },
 ];
 
@@ -193,11 +193,11 @@ export function BeforeAfter() {
             ))}
 
             {/* Hint */}
-            <div className="mt-4 p-4 border border-dashed border-primary/30 bg-primary/5">
+            {/* <div className="mt-4 p-4 border border-dashed border-primary/30 bg-primary/5">
               <p className="text-xs text-muted-foreground font-mono leading-relaxed">
                 <span className="text-primary">TIP:</span> Drag the orange handle on the image to compare before &amp; after results. Works on mobile too.
               </p>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

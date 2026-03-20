@@ -125,16 +125,17 @@ export function About() {
 
             <div className="space-y-6 text-muted-foreground font-light text-lg">
               <p>
-                Technoshine was founded on a single belief — that every stone surface deserves to look as magnificent as the day it was laid. With over 20 years in the industry, we have restored thousands of marble, granite, and travertine surfaces across residential and commercial properties.
+                <b>Founded in 1993,</b> Technoshine had its humble beginning doing stone restoration in Rizal. For more than <b>30 years of passion and dedication</b>, we had been restoring natural stones to homes, hotels, malls and the like. Servicing to clients who value their natural stones and need not to replace.
               </p>
+
               <p>
-                Our team of certified stone restoration technicians combines time-honoured techniques with advanced diamond tooling and professional-grade chemistry, delivering results that last and aesthetics that impress.
+                Technoshine has grown year by year. Continuously developing and nurturing our skills and methodology, we become experts in our field of service. Our experiences and understanding of natural stones have enriched the knowledge and approached of our skilled stone specialists and craftsmen. 
               </p>
             </div>
 
             <div ref={statsRef} className="mt-10 grid grid-cols-2 gap-6">
               <StatCounter
-                target={20}
+                target={30}
                 suffix="+"
                 label="Years of Experience"
                 delay={0}
@@ -176,7 +177,7 @@ export function About() {
             </div>
 
             <p className="text-muted-foreground text-sm leading-relaxed">
-              To deliver world-class marble and natural stone restoration services across the Philippines — breathing new life into every surface we touch. We are committed to precision, integrity, and craftsmanship that stands the test of time, ensuring every client's space reflects the beauty it was designed to hold.
+              To remain the No. 1 and the only legitimate stone care and restoration in the country.
             </p>
 
             <div className="mt-6 flex items-center gap-2 text-xs font-mono text-primary uppercase tracking-widest">
@@ -206,7 +207,13 @@ export function About() {
             </div>
 
             <p className="text-muted-foreground text-sm leading-relaxed">
-              To become the most trusted name in stone restoration throughout Southeast Asia — setting the gold standard for quality, innovation, and client satisfaction. We envision a future where every marble floor, countertop, and facade we restore becomes a lasting testament to the beauty of natural stone and the skill of Filipino craftsmanship.
+              • To provide our customers who value their natural stones with five star standard and high quality services and products that would restore and revive their stones without replacement in a professional, caring and reasonable price manner, doing our best at all times. 
+              <br></br>
+              <br></br>
+              • Our employees are our heart, we will continuously support its career and professional development to create a positive impact in our company’s future growth. 
+              <br></br>
+              <br></br>
+              • To operate efficiently and reliably by valuing our clients’ businesses to achieve its main goal.
             </p>
 
             <div className="mt-6 flex items-center gap-2 text-xs font-mono text-primary uppercase tracking-widest">
