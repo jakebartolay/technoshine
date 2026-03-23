@@ -8,11 +8,11 @@ const projects = [
     before: "before-1.jpeg",
     after: "after-1.jpeg",
   },
-  {
-    label: "Countertop Restoration",
-    before: "before-2.png",
-    after: "after-2.png",
-  },
+  // {
+  //   label: "Countertop Restoration",
+  //   before: "before-2.png",
+  //   after: "after-2.png",
+  // },
   {
     label: "Floor Restoration",
     before: "before-3.jpg",

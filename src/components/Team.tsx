@@ -3,25 +3,25 @@ import { Instagram, Facebook, Linkedin } from "lucide-react";
 
 const team = [
   {
-    name: "EDGAR SANTOS",
-    role: "Master Stone Restorer",
-    image: "team-1.png",
+    name: "ERWIN TORREFIEL",
+    role: "MANAGING DIRECTOR",
+    // image: "team-1.png",
   },
-  {
-    name: "MARK DELA CRUZ",
-    role: "Diamond Polishing Expert",
-    image: "team-2.png",
-  },
-  {
-    name: "CARLA REYES",
-    role: "Crack & Repair Specialist",
-    image: "team-3.png",
-  },
-  {
-    name: "ROMEO VILLANUEVA",
-    role: "Surface Sealing Technician",
-    image: "team-4.png",
-  },
+  // {
+  //   name: "MARK DELA CRUZ",
+  //   role: "Diamond Polishing Expert",
+  //   // image: "team-2.png",
+  // },
+  // {
+  //   name: "CARLA REYES",
+  //   role: "Crack & Repair Specialist",
+  //   // image: "team-3.png",
+  // },
+  // {
+  //   name: "ROMEO VILLANUEVA",
+  //   role: "Surface Sealing Technician",
+  //   // image: "team-4.png",
+  // },
 ];
 
 export function Team() {
