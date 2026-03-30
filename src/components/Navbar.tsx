@@ -79,6 +79,8 @@ export default function Navbar() {
   };
 
   const isActive = (href: string) => activeSection === href.replace("#", "");
+  const logoSrc = scrolled ? "/logo/companylogo1.png" : "/logo/companylogo2.png";
+  const textColor = scrolled ? "text-gray-700" : "text-white";
 
   return (
     <nav
@@ -93,11 +95,12 @@ export default function Navbar() {
           className="h-14 flex items-end justify-center cursor-pointer overflow-visible"
         >
           <img
-            src="/logo/companylogo1.png"
+            src={logoSrc}
             alt="Technoshine PH Logo"
             className="h-11 w-auto object-contain"
           />
         </a>
+        
 
         <ul className="hidden md:flex items-center gap-1">
           {NAV_LINKS.map((link) =>
@@ -110,7 +113,7 @@ export default function Navbar() {
                       ? "bg-orange-500 text-white"
                       : dropdownOpen
                       ? "bg-orange-50 text-orange-600"
-                      : "text-gray-700 hover:bg-orange-50 hover:text-orange-600"
+                      : `${textColor} hover:bg-orange-50 hover:text-orange-600`
                   }`}
                 >
                   {link.label}
@@ -149,7 +152,7 @@ export default function Navbar() {
                   className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors block ${
                     isActive(link.href)
                       ? "bg-orange-500 text-white"
-                      : "text-gray-700 hover:bg-orange-50 hover:text-orange-600"
+                      : `${textColor} hover:bg-orange-50 hover:text-orange-600`
                   }`}
                 >
                   {link.label}
@@ -160,7 +163,7 @@ export default function Navbar() {
         </ul>
 
         <button
-          className="md:hidden p-2 rounded-lg text-gray-700 hover:bg-orange-50 self-end"
+          className={`md:hidden p-2 rounded-lg ${scrolled ? "text-gray-700 hover:bg-orange-50" : "text-white hover:bg-white/20"} self-end`}
           onClick={() => setMobileOpen((p) => !p)}
           aria-label="Toggle menu"
         >
