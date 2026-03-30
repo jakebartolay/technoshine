@@ -3,7 +3,7 @@ const team = [
     name: "Erwin Torrefiel",
     role: "Managing Director",
     division: "Executive",
-    img: "test.jpg",
+    img: "teams/erwin.png",
   },
   {
     name: "Jo Torrefiel",
@@ -15,25 +15,25 @@ const team = [
     name: "RICH NICOLLIE TORREFIEL",
     role: "President",
     division: "President",
-    img: "test.jpg",
+    img: "teams/dj.png",
   },
   {
     name: "Mary-Lou Robellon",
     role: "Excutive Manager",
     division: "Manager",
-    img: "test.jpg",
+    img: "teams/mary-lou.png",
   },
   {
     name: "Mark Antony Daga",
     role: "Technical Manager",
     division: "Stonecare",
-    img: "test.jpg",
+    img: "teams/mark.png",
   },
   {
     name: "Monica Mangilit",
     role: "Trading",
     division: "Trading",
-    img: "test.jpg",
+    img: "teams/monica.png",
   },
 ];
 
@@ -88,7 +88,7 @@ export default function TeamSection() {
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Meet the Team
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-600 max-w-4xl mx-auto">
             The dedicated people behind <b className="text-black">TECHNOSHINE</b> — driving excellence across every division.
           </p>
         </div>

@@ -15,7 +15,7 @@ const services = [
   },
   {
     title: "Trading",
-    href: "https://trading.technoshineph.com",
+    href: "https://trading.technoshineph.com/index.php",
     img: "images/trading.png",
     description: "Strategic trading solutions with competitive sourcing, supply chain management, and distribution.",
     features: ["Product Sourcing", "Supply Chain", "Distribution", "Import & Export"],
