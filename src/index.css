@@ -134,3 +134,21 @@ html {
     transform: translateY(0) scale(1);
   }
 }
+
+@keyframes teamSlideUp {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(calc(-50% - 0.625rem));
+  }
+}
+
+.team-slider-track {
+  animation: teamSlideUp 24s linear infinite;
+}
+
+.team-slider-track:hover {
+  animation-play-state: paused;
+}

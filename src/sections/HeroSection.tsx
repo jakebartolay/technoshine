@@ -74,11 +74,15 @@ export default function HeroSection() {
         </div>
       </div>
 
-      <div className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 animate-bounce">
-        <svg className="h-6 w-6 text-orange-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <a
+        href="#about"
+        aria-label="Scroll to About section"
+        className="absolute bottom-8 left-1/2 z-20 -translate-x-1/2 cursor-pointer animate-bounce text-orange-300 transition-colors hover:text-orange-200"
+      >
+        <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
         </svg>
-      </div>
+      </a>
     </section>
   );
 }
