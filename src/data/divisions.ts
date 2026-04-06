@@ -136,16 +136,16 @@ export const divisions: Record<DivisionKey, DivisionData> = {
     detailsLabel: "Services",
     showcaseLabel: "Projects",
     image: divisionImages.construction,
-    tagline: "Planning, building, and delivery from start to finish.",
+    tagline: "Building, restoring, and perfecting spaces.",
     shortDescription:
-      "End-to-end construction services from planning and design to execution and project management.",
+      "Construction, renovation, fit-out, modular works, and finishing solutions for residential, commercial, and institutional projects.",
     heroDescription:
-      "Construction delivers organized project execution for commercial, institutional, and renovation work with practical coordination from planning through turnover.",
+      "Construction delivers quality-focused execution across civil works, architectural finishes, modular construction, and specialized restoration with disciplined project coordination.",
     features: [
-      "Residential Build",
-      "Commercial Projects",
-      "Renovation",
-      "Project Management",
+      "Construction Services",
+      "Renovation and Fit-Out",
+      "Modular Construction",
+      "Architectural Finishes",
     ],
     theme: {
       mutedBadge: "bg-yellow-100 text-yellow-700",
@@ -158,22 +158,22 @@ export const divisions: Record<DivisionKey, DivisionData> = {
     },
     services: [
       {
-        title: "General Construction",
+        title: "Construction Services",
         description:
-          "Execution support for institutional, commercial, and specialty build-outs.",
-        bullets: ["Structural works", "Site coordination", "Turnover readiness"],
+          "Reliable construction execution for residential, commercial, and institutional projects.",
+        bullets: ["Civil works", "Site coordination", "Project execution"],
       },
       {
-        title: "Fit-Out and Renovation",
+        title: "Renovation and Fit-Out",
         description:
-          "Interior and functional upgrades aligned with business, retail, and hospitality needs.",
-        bullets: ["Partitioning", "Flooring", "Interior finishing"],
+          "Interior and structural renovation, fit-out, finishing, and installation works.",
+        bullets: ["Interior upgrades", "Finishing works", "Installation support"],
       },
       {
-        title: "Project Supervision",
+        title: "Modular and Specialized Works",
         description:
-          "Schedule, quality, and subcontractor oversight to keep the build moving with less friction.",
-        bullets: ["Timeline tracking", "Procurement support", "Quality assurance"],
+          "Prefabrication, modular construction, stone restoration, and architectural finishing solutions.",
+        bullets: ["Modular construction", "Stone restoration", "Architectural finishes"],
       },
     ],
     showcaseItems: [
@@ -213,18 +213,18 @@ export const divisions: Record<DivisionKey, DivisionData> = {
     showcaseRoute: appRoutes.tradingCatalog,
     documentTitle: "TECHNOSHINE | Trading International",
     detailsLabel: "Products",
-    showcaseLabel: "Catalog",
+    showcaseLabel: "Gallery",
     image: divisionImages.trading,
-    tagline: "Strategic sourcing, supply, and distribution support.",
+    tagline: "Road safety systems and industrial barrier solutions.",
     shortDescription:
-      "Strategic trading solutions with competitive sourcing, supply chain management, and distribution.",
+      "Road safety products and industrial barrier systems with dependable supply, delivery, and project support.",
     heroDescription:
-      "Trading supports clients with product sourcing, supply coordination, and install-ready materials for operational and infrastructure needs across the Philippines.",
+      "Trading International delivers solar road studs, roller guardrails, solar streetlights, and related infrastructure products backed by technical guidance and reliable coordination.",
     features: [
-      "Product Sourcing",
-      "Supply Chain",
-      "Distribution",
-      "Import and Export",
+      "Solar Road Studs",
+      "Steel Roller Guardrails",
+      "Solar Streetlights",
+      "Project Support",
     ],
     theme: {
       mutedBadge: "bg-amber-100 text-amber-700",
@@ -237,22 +237,22 @@ export const divisions: Record<DivisionKey, DivisionData> = {
     },
     services: [
       {
-        title: "Industrial Product Sourcing",
+        title: "Road Safety Product Supply",
         description:
-          "Connecting clients to dependable materials and equipment suited to project requirements.",
-        bullets: ["Vendor coordination", "Competitive sourcing", "Specification matching"],
+          "Supply of solar studs, guardrails, lighting, and related components for public and private infrastructure.",
+        bullets: ["Specification matching", "Bulk order support", "Accessory packages"],
       },
       {
-        title: "Supply and Distribution",
+        title: "Project Delivery Coordination",
         description:
-          "Moving products from procurement to delivery with visibility and practical coordination.",
-        bullets: ["Order consolidation", "Delivery scheduling", "Regional fulfillment"],
+          "Structured coordination from production to delivery to keep deployment schedules moving.",
+        bullets: ["Delivery scheduling", "Regional dispatch", "Project timeline support"],
       },
       {
-        title: "Installation-Ready Packages",
+        title: "Technical and Export Support",
         description:
-          "Combining supply scope with site-readiness support for smoother implementation.",
-        bullets: ["Material bundles", "Logistics support", "Quality checks"],
+          "Preparation of installation-ready packages with documentation and practical product guidance.",
+        bullets: ["Quality checks", "Export-ready packing", "Technical recommendations"],
       },
     ],
     showcaseItems: [

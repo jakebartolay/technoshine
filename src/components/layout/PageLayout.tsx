@@ -5,11 +5,18 @@ import BackToTop from "@/components/layout/BackToTop";
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
 import { getDivisionByPathname } from "@/data/divisions";
+import { usePageBranding } from "@/hooks/usePageBranding";
+import { appRoutes } from "@/utils/routes";
 import { scrollToHash } from "@/utils/scroll";
 
 export default function PageLayout() {
   const location = useLocation();
   const currentDivision = getDivisionByPathname(location.pathname);
+  const pageTitle =
+    currentDivision?.documentTitle ??
+    (location.pathname === appRoutes.careers ? "TECHNOSHINE | Careers" : "TECHNOSHINE");
+  const pageBrandKey = currentDivision?.key ?? "technoshine";
+  const showFooter = !currentDivision && location.pathname !== appRoutes.careers;
 
   useEffect(() => {
     if (location.hash) {
@@ -20,14 +27,7 @@ export default function PageLayout() {
     window.scrollTo({ top: 0, behavior: "auto" });
   }, [location.pathname, location.hash]);
 
-  useEffect(() => {
-    if (currentDivision) {
-      document.title = currentDivision.documentTitle;
-      return;
-    }
-
-    document.title = "TECHNOSHINE";
-  }, [location.pathname, currentDivision]);
+  usePageBranding(pageTitle, pageBrandKey);
 
   return (
     <div className="min-h-screen bg-white">
@@ -35,7 +35,7 @@ export default function PageLayout() {
       <main>
         <Outlet />
       </main>
-      {!currentDivision ? <Footer /> : null}
+      {showFooter ? <Footer /> : null}
       <BackToTop />
     </div>
   );

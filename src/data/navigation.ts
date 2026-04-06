@@ -1,19 +1,38 @@
 import { divisionList } from "@/data/divisions";
-import { buildHomeHashRoute, type HomeSectionId } from "@/utils/routes";
+import { appRoutes, buildHomeHashRoute, type HomeSectionId } from "@/utils/routes";
 
-export const homeNavigationLinks: Array<{ label: string; sectionId: HomeSectionId }> = [
-  { label: "Home", sectionId: "home" },
-  { label: "About", sectionId: "about" },
-  { label: "Team", sectionId: "team" },
-  { label: "Services", sectionId: "services" },
-  { label: "Portfolio", sectionId: "portfolio" },
-  { label: "Contact", sectionId: "contact" },
+export type MainNavigationLink =
+  | {
+      label: string;
+      type: "section";
+      sectionId: HomeSectionId;
+    }
+  | {
+      label: string;
+      type: "route";
+      to: string;
+    };
+
+export const mainNavigationLinks: MainNavigationLink[] = [
+  { label: "Home", type: "section", sectionId: "home" },
+  { label: "About", type: "section", sectionId: "about" },
+  { label: "Team", type: "section", sectionId: "team" },
+  { label: "Services", type: "section", sectionId: "services" },
+  { label: "Portfolio", type: "section", sectionId: "portfolio" },
+  { label: "Careers", type: "route", to: appRoutes.careers },
+  { label: "Contact", type: "section", sectionId: "contact" },
 ];
 
-export const sectionNavigationLinks = homeNavigationLinks.map((link) => ({
-  ...link,
-  to: buildHomeHashRoute(link.sectionId),
-}));
+export const sectionNavigationLinks = mainNavigationLinks.flatMap((link) =>
+  link.type === "section"
+    ? [
+        {
+          ...link,
+          to: buildHomeHashRoute(link.sectionId),
+        },
+      ]
+    : [],
+);
 
 export const divisionNavigationLinks = divisionList.map((division) => ({
   label: division.name,

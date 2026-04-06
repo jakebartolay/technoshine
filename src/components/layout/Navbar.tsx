@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import { brandAssets } from "@/assets/siteAssets";
 import { getDivisionByPathname } from "@/data/divisions";
-import { divisionNavigationLinks, homeNavigationLinks } from "@/data/navigation";
+import { divisionNavigationLinks, mainNavigationLinks } from "@/data/navigation";
 import { appRoutes, homeSectionIds, type HomeSectionId } from "@/utils/routes";
 import { scrollToHash } from "@/utils/scroll";
 
@@ -91,8 +91,14 @@ export default function Navbar() {
     navigate(to);
   };
 
+  const handleRouteNavigation = (to: string) => {
+    setMobileOpen(false);
+    navigate(to);
+  };
+
   const textColor = !isHomePage || scrolled ? "text-gray-700" : "text-white";
   const logoSrc = !isHomePage || scrolled ? brandAssets.navLogoDark : brandAssets.navLogoLight;
+  const isSectionActive = (sectionId: HomeSectionId) => isHomePage && activeSection === sectionId;
 
   const scrollToSectionAfterMenuClose = (sectionId: HomeSectionId) => {
     window.requestAnimationFrame(() => {
@@ -203,8 +209,8 @@ export default function Navbar() {
         </Link>
 
         <ul className="hidden items-center gap-1 md:flex">
-          {homeNavigationLinks.map((link) =>
-            link.sectionId === "services" ? (
+          {mainNavigationLinks.map((link) =>
+            link.type === "section" && link.sectionId === "services" ? (
               <li key={link.label} className="relative" ref={dropdownRef}>
                 <button
                   onClick={() => {
@@ -212,7 +218,7 @@ export default function Navbar() {
                     setDropdownOpen((current) => !current);
                   }}
                   className={`relative flex items-center gap-1 rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
-                    activeSection === link.sectionId
+                    isSectionActive(link.sectionId)
                       ? "bg-orange-500 text-white"
                       : dropdownOpen
                         ? "bg-orange-50 text-orange-600"
@@ -247,16 +253,29 @@ export default function Navbar() {
               </li>
             ) : (
               <li key={link.label}>
-                <button
-                  onClick={() => handleSectionNavigation(link.sectionId)}
-                  className={`block rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
-                    activeSection === link.sectionId
-                      ? "bg-orange-500 text-white"
-                      : `${textColor} hover:bg-orange-50 hover:text-orange-600`
-                  }`}
-                >
-                  {link.label}
-                </button>
+                {link.type === "section" ? (
+                  <button
+                    onClick={() => handleSectionNavigation(link.sectionId)}
+                    className={`block rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
+                      isSectionActive(link.sectionId)
+                        ? "bg-orange-500 text-white"
+                        : `${textColor} hover:bg-orange-50 hover:text-orange-600`
+                    }`}
+                  >
+                    {link.label}
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => handleRouteNavigation(link.to)}
+                    className={`block rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
+                      location.pathname === link.to
+                        ? "bg-orange-500 text-white"
+                        : `${textColor} hover:bg-orange-50 hover:text-orange-600`
+                    }`}
+                  >
+                    {link.label}
+                  </button>
+                )}
               </li>
             ),
           )}
@@ -281,28 +300,42 @@ export default function Navbar() {
 
       {mobileOpen ? (
         <div className="flex flex-col gap-1 border-t border-gray-100 bg-white px-6 pb-4 pt-6 md:hidden">
-          {homeNavigationLinks.map((link) => (
-            <button
-              key={link.label}
-              onClick={() => {
-                setMobileOpen(false);
+          {mainNavigationLinks.map((link) =>
+            link.type === "section" ? (
+              <button
+                key={link.label}
+                onClick={() => {
+                  setMobileOpen(false);
 
-                if (!isHomePage) {
-                  navigate(`${appRoutes.home}#${link.sectionId}`);
-                  return;
-                }
+                  if (!isHomePage) {
+                    navigate(`${appRoutes.home}#${link.sectionId}`);
+                    return;
+                  }
 
-                scrollToSectionAfterMenuClose(link.sectionId);
-              }}
-              className={`rounded-lg px-3 py-2.5 text-left text-sm font-medium transition-colors ${
-                activeSection === link.sectionId
-                  ? "bg-orange-500 text-white"
-                  : "text-gray-700 hover:bg-orange-50 hover:text-orange-600"
-              }`}
-            >
-              {link.label}
-            </button>
-          ))}
+                  scrollToSectionAfterMenuClose(link.sectionId);
+                }}
+                className={`rounded-lg px-3 py-2.5 text-left text-sm font-medium transition-colors ${
+                  isSectionActive(link.sectionId)
+                    ? "bg-orange-500 text-white"
+                    : "text-gray-700 hover:bg-orange-50 hover:text-orange-600"
+                }`}
+              >
+                {link.label}
+              </button>
+            ) : (
+              <button
+                key={link.label}
+                onClick={() => handleRouteNavigation(link.to)}
+                className={`rounded-lg px-3 py-2.5 text-left text-sm font-medium transition-colors ${
+                  location.pathname === link.to
+                    ? "bg-orange-500 text-white"
+                    : "text-gray-700 hover:bg-orange-50 hover:text-orange-600"
+                }`}
+              >
+                {link.label}
+              </button>
+            ),
+          )}
 
           <div className="mt-3 rounded-xl bg-orange-50 p-3">
             <p className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-orange-600">Divisions</p>

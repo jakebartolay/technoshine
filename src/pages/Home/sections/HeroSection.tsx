@@ -1,12 +1,20 @@
+import { backgroundAssets } from "@/assets/siteAssets";
+import { homeBrandIconMeta } from "@/pages/Home/homeBrandIcons";
 import { scrollToHash } from "@/utils/scroll";
 
-const divisions = ["StoneCare", "Trading", "Construction"];
+const divisions = [
+  { key: "stonecare", label: "StoneCare" },
+  { key: "trading", label: "Trading" },
+  { key: "construction", label: "Construction" },
+] as const;
 
 export default function HeroSection() {
+  const TechnoshineIcon = homeBrandIconMeta.technoshine.icon;
+
   return (
     <section id="home" data-scroll-offset="0" className="relative min-h-screen overflow-hidden bg-gray-950 text-white">
       <div className="absolute inset-0 hidden md:block">
-        <img src="/images/herobg.jpg" alt="" className="h-full w-full object-cover opacity-30" />
+        <img src={backgroundAssets.hero} alt="" className="h-full w-full object-cover opacity-30" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/75 to-black/50" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(249,115,22,0.28),transparent_32%),radial-gradient(circle_at_bottom_left,rgba(251,146,60,0.22),transparent_28%)]" />
       </div>
@@ -14,6 +22,7 @@ export default function HeroSection() {
       <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl items-center px-6 py-24">
         <div className="max-w-3xl">
           <div className="mb-6 hidden items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-1.5 text-sm font-medium text-orange-200 backdrop-blur-sm sm:inline-flex">
+            <TechnoshineIcon className="h-4 w-4" />
             Technoshine
           </div>
 
@@ -30,10 +39,17 @@ export default function HeroSection() {
           <div className="mb-12 flex flex-wrap gap-3">
             {divisions.map((division) => (
               <span
-                key={division}
+                key={division.key}
                 className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-medium text-white/90 backdrop-blur-sm"
               >
-                {division}
+                <span className="flex items-center gap-2">
+                  {(() => {
+                    const DivisionIcon = homeBrandIconMeta[division.key].icon;
+
+                    return <DivisionIcon className="h-4 w-4 text-orange-300" />;
+                  })()}
+                  {division.label}
+                </span>
               </span>
             ))}
           </div>

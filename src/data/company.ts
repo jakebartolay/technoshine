@@ -2,6 +2,7 @@ export const companyInfo = {
   name: "TECHNOSHINE",
   tagline: "Building excellence across industries in the Philippines.",
   email: "contactus@technoshineph.com",
+  careersEmail: "hiring@technoshineph.com",
   phone: "+63 917 824 1220",
   addressLines: [
     "Unit 110 Union Square Condominium,",

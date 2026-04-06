@@ -2,15 +2,18 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import { brandAssets } from "@/assets/siteAssets";
 import { companyInfo, legalLinks } from "@/data/company";
-import { divisionNavigationLinks, homeNavigationLinks } from "@/data/navigation";
-import { appRoutes, buildHomeHashRoute } from "@/utils/routes";
+import { divisionNavigationLinks, mainNavigationLinks } from "@/data/navigation";
+import { appRoutes, buildHomeHashRoute, type HomeSectionId } from "@/utils/routes";
 import { scrollToHash } from "@/utils/scroll";
 
 export default function Footer() {
   const location = useLocation();
   const navigate = useNavigate();
+  const footerNavigationLinks = mainNavigationLinks.filter(
+    (link) => !(link.type === "route" && link.to === appRoutes.careers),
+  );
 
-  const handleSectionClick = (sectionId: (typeof homeNavigationLinks)[number]["sectionId"]) => {
+  const handleSectionClick = (sectionId: HomeSectionId) => {
     const hashRoute = buildHomeHashRoute(sectionId);
 
     if (location.pathname === appRoutes.home) {
@@ -29,15 +32,25 @@ export default function Footer() {
         <div>
           <h4 className="mb-5 text-sm font-semibold uppercase tracking-widest text-white">Navigation</h4>
           <ul className="space-y-3">
-            {homeNavigationLinks.map((link) => (
+            {footerNavigationLinks.map((link) => (
               <li key={link.label}>
-                <button
-                  onClick={() => handleSectionClick(link.sectionId)}
-                  className="group flex items-center gap-2 text-sm text-gray-400 transition-colors hover:text-orange-400"
-                >
-                  <span className="h-1.5 w-1.5 rounded-full bg-orange-500 opacity-0 transition-opacity group-hover:opacity-100" />
-                  {link.label}
-                </button>
+                {link.type === "section" ? (
+                  <button
+                    onClick={() => handleSectionClick(link.sectionId)}
+                    className="group flex items-center gap-2 text-sm text-gray-400 transition-colors hover:text-orange-400"
+                  >
+                    <span className="h-1.5 w-1.5 rounded-full bg-orange-500 opacity-0 transition-opacity group-hover:opacity-100" />
+                    {link.label}
+                  </button>
+                ) : (
+                  <Link
+                    to={link.to}
+                    className="group flex items-center gap-2 text-sm text-gray-400 transition-colors hover:text-orange-400"
+                  >
+                    <span className="h-1.5 w-1.5 rounded-full bg-orange-500 opacity-0 transition-opacity group-hover:opacity-100" />
+                    {link.label}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>
@@ -114,14 +127,20 @@ export default function Footer() {
         <div>
           <h4 className="mb-5 text-center text-sm font-semibold uppercase tracking-widest text-white">Navigation</h4>
           <ul className="flex flex-wrap items-center justify-center gap-x-4 gap-y-3">
-            {homeNavigationLinks.map((link) => (
+            {footerNavigationLinks.map((link) => (
               <li key={link.label}>
-                <button
-                  onClick={() => handleSectionClick(link.sectionId)}
-                  className="text-sm text-gray-400 transition-colors hover:text-orange-400"
-                >
-                  {link.label}
-                </button>
+                {link.type === "section" ? (
+                  <button
+                    onClick={() => handleSectionClick(link.sectionId)}
+                    className="text-sm text-gray-400 transition-colors hover:text-orange-400"
+                  >
+                    {link.label}
+                  </button>
+                ) : (
+                  <Link to={link.to} className="text-sm text-gray-400 transition-colors hover:text-orange-400">
+                    {link.label}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>
