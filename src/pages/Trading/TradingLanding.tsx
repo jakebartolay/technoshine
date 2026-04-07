@@ -80,8 +80,8 @@ export default function TradingLanding() {
         <div className="container-shell grid items-center gap-14 lg:grid-cols-2">
           <TradingReveal>
             <img
-              src="https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=1200&q=80"
-              alt="Factory production"
+              src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80"
+              alt="Building material and construction site"
               className="h-[520px] w-full rounded-[2rem] object-cover shadow-lg"
             />
           </TradingReveal>
