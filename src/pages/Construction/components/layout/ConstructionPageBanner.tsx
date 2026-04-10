@@ -13,7 +13,7 @@ export default function ConstructionPageBanner({
 }: ConstructionPageBannerProps) {
   return (
     <section
-      className="relative overflow-hidden bg-slate-950 py-28 text-white"
+      className="relative overflow-hidden bg-slate-950 py-20 text-white sm:py-24 lg:py-28"
       style={{
         backgroundImage: `linear-gradient(rgba(2,6,23,0.78), rgba(2,6,23,0.78)), url(${image})`,
         backgroundSize: "cover",
@@ -22,11 +22,11 @@ export default function ConstructionPageBanner({
     >
       <ConstructionContainer>
         <div className="max-w-3xl">
-          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-orange-400">
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.22em] text-orange-400 sm:text-sm sm:tracking-[0.3em]">
             Technoshine Construction
           </p>
-          <h1 className="text-4xl font-black tracking-tight sm:text-5xl">{title}</h1>
-          <p className="mt-5 text-lg leading-8 text-slate-200">{subtitle}</p>
+          <h1 className="text-3xl font-black tracking-tight sm:text-4xl lg:text-5xl">{title}</h1>
+          <p className="mt-4 text-base leading-7 text-slate-200 sm:mt-5 sm:text-lg sm:leading-8">{subtitle}</p>
         </div>
       </ConstructionContainer>
     </section>

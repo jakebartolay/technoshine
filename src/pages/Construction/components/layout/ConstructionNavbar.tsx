@@ -14,7 +14,7 @@ export default function ConstructionNavbar() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/90 backdrop-blur-xl">
-      <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 sm:py-4 lg:px-8">
         <Link
           to={constructionRoutes.home}
           className="flex items-center gap-3"
@@ -23,11 +23,11 @@ export default function ConstructionNavbar() {
           <img
             src={constructionBrandAssets.logo}
             alt="Technoshine Construction logo"
-            className="h-10 w-10 object-contain sm:h-11 sm:w-11"
+            className="h-9 w-9 object-contain sm:h-11 sm:w-11"
           />
           <div>
-            <p className="text-lg font-black tracking-wide text-white">TECHNOSHINE</p>
-            <p className="text-xs uppercase tracking-[0.25em] text-slate-400">Construction</p>
+            <p className="text-base font-black tracking-wide text-white sm:text-lg">TECHNOSHINE</p>
+            <p className="text-[10px] uppercase tracking-[0.18em] text-slate-400 sm:text-xs sm:tracking-[0.25em]">Construction</p>
           </div>
         </Link>
 
@@ -61,7 +61,7 @@ export default function ConstructionNavbar() {
         <button
           type="button"
           onClick={() => setOpen((prev) => !prev)}
-          className="rounded-lg border border-white/10 px-3 py-2 text-white lg:hidden"
+          className="shrink-0 rounded-lg border border-white/10 px-3 py-2 text-white lg:hidden"
           aria-label="Toggle construction navigation"
         >
           Menu

@@ -13,7 +13,7 @@ export default function TradingAbout() {
       />
 
       <section className="page-padding bg-white">
-        <div className="container-shell grid items-center gap-14 lg:grid-cols-2">
+        <div className="container-shell grid items-center gap-10 sm:gap-14 lg:grid-cols-2">
           <TradingReveal>
             <TradingSectionTitle
               eyebrow="Who We Are"
@@ -34,7 +34,7 @@ export default function TradingAbout() {
             <img
               src={tradingBrandAssets.about}
               alt="Technoshine Trading International"
-              className="h-[500px] w-full rounded-[2rem] object-cover shadow-lg"
+              className="h-[280px] w-full rounded-[1.5rem] object-cover shadow-lg sm:h-[400px] sm:rounded-[2rem] lg:h-[500px]"
             />
           </TradingReveal>
         </div>
@@ -54,8 +54,8 @@ export default function TradingAbout() {
             ],
           ].map(([title, text], index) => (
             <TradingReveal key={title} delay={index * 0.08}>
-              <div className="flex h-full flex-col rounded-[2rem] bg-white p-8 shadow-sm ring-1 ring-slate-200">
-                <h3 className="mb-4 text-2xl font-bold">{title}</h3>
+              <div className="flex h-full flex-col rounded-[2rem] bg-white p-6 sm:p-8 shadow-sm ring-1 ring-slate-200">
+                <h3 className="mb-4 text-xl font-bold sm:text-2xl">{title}</h3>
                 <p className="flex-grow leading-7 text-slate-600">{text}</p>
               </div>
             </TradingReveal>

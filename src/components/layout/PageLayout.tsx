@@ -12,6 +12,7 @@ import { scrollToHash } from "@/utils/scroll";
 export default function PageLayout() {
   const location = useLocation();
   const currentDivision = getDivisionByPathname(location.pathname);
+  const isStonecareExperience = location.pathname.startsWith(appRoutes.stonecare);
   const pageTitle =
     currentDivision?.documentTitle ??
     (location.pathname === appRoutes.careers ? "TECHNOSHINE | Careers" : "TECHNOSHINE");
@@ -31,12 +32,12 @@ export default function PageLayout() {
 
   return (
     <div className="min-h-screen bg-white">
-      <Navbar />
+      {isStonecareExperience ? null : <Navbar />}
       <main>
         <Outlet />
       </main>
       {showFooter ? <Footer /> : null}
-      <BackToTop />
+      {isStonecareExperience ? null : <BackToTop />}
     </div>
   );
 }

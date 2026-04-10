@@ -18,25 +18,27 @@ export default function TradingLanding() {
           />
         </div>
 
-        <div className="container-shell relative grid min-h-[82vh] items-center gap-14 py-20 lg:grid-cols-[1.1fr_0.9fr]">
+        <div className="container-shell relative grid min-h-[82vh] items-center gap-10 py-16 sm:gap-14 sm:py-20 lg:grid-cols-[1.1fr_0.9fr]">
           <TradingReveal>
-            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.35em] text-orange-300">
+            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-orange-300 sm:text-sm sm:tracking-[0.35em]">
               Trusted Industrial Protection
             </p>
-            <h1 className="max-w-3xl text-5xl font-extrabold leading-tight md:text-6xl">
+            <h1 className="max-w-3xl text-4xl font-extrabold leading-tight sm:text-5xl md:text-6xl">
               Modern steel barrier solutions built for demanding projects.
             </h1>
-            <p className="mt-6 max-w-2xl text-base leading-8 text-slate-200">
+            <p className="mt-5 max-w-2xl text-sm leading-7 text-slate-200 sm:mt-6 sm:text-base sm:leading-8">
               We deliver road safety systems, structural support components, and
               project-ready industrial products with dependable quality and strong technical
               service.
             </p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <TradingButton to={tradingRoutes.products}>Explore Products</TradingButton>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
+              <TradingButton to={tradingRoutes.products} className="w-full justify-center sm:w-auto">
+                Explore Products
+              </TradingButton>
               <TradingButton
                 to={tradingRoutes.contact}
                 variant="outline"
-                className="border-white/30 bg-white/10 text-white hover:bg-white/20"
+                className="w-full justify-center border-white/30 bg-white/10 text-white hover:bg-white/20 sm:w-auto"
               >
                 Request Quote
               </TradingButton>
@@ -44,11 +46,11 @@ export default function TradingLanding() {
           </TradingReveal>
 
           <TradingReveal delay={0.15} y={70}>
-            <div className="trading-float rounded-[2rem] border border-white/10 bg-white/10 p-5 shadow-2xl backdrop-blur-md">
+            <div className="trading-float rounded-[1.5rem] border border-white/10 bg-white/10 p-3 shadow-2xl backdrop-blur-md sm:rounded-[2rem] sm:p-5">
               <img
                 src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80"
                 alt="Featured industrial product"
-                className="h-[460px] w-full rounded-[1.5rem] object-cover"
+                className="h-[280px] w-full rounded-[1.25rem] object-cover sm:h-[380px] sm:rounded-[1.5rem] lg:h-[460px]"
               />
             </div>
           </TradingReveal>
@@ -77,12 +79,12 @@ export default function TradingLanding() {
       </section>
 
       <section className="page-padding bg-white">
-        <div className="container-shell grid items-center gap-14 lg:grid-cols-2">
+        <div className="container-shell grid items-center gap-10 sm:gap-14 lg:grid-cols-2">
           <TradingReveal>
             <img
               src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80"
               alt="Building material and construction site"
-              className="h-[520px] w-full rounded-[2rem] object-cover shadow-lg"
+              className="h-[280px] w-full rounded-[1.5rem] object-cover shadow-lg sm:h-[400px] sm:rounded-[2rem] lg:h-[520px]"
             />
           </TradingReveal>
 
@@ -101,8 +103,8 @@ export default function TradingLanding() {
                 ["24/7", "Response and service support"],
               ].map(([value, label], index) => (
                 <TradingReveal key={label} delay={0.15 + index * 0.08}>
-                  <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6">
-                    <p className="text-3xl font-extrabold text-orange-500">{value}</p>
+                  <div className="rounded-3xl border border-slate-200 bg-slate-50 p-5 sm:p-6">
+                    <p className="text-2xl font-extrabold text-orange-500 sm:text-3xl">{value}</p>
                     <p className="mt-2 text-sm text-slate-600">{label}</p>
                   </div>
                 </TradingReveal>
@@ -129,11 +131,11 @@ export default function TradingLanding() {
                     alt={item.title}
                     className="h-72 w-full object-cover"
                   />
-                  <div className="p-6">
-                    <p className="text-xs font-semibold uppercase tracking-[0.25em] text-orange-500">
+                  <div className="p-5 sm:p-6">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-orange-500 sm:text-xs sm:tracking-[0.25em]">
                       {item.location}
                     </p>
-                    <h3 className="mt-3 text-xl font-bold">{item.title}</h3>
+                    <h3 className="mt-3 text-lg font-bold sm:text-xl">{item.title}</h3>
                     <p className="mt-3 text-sm leading-7 text-slate-600">
                       {item.description}
                     </p>

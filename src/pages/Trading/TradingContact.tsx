@@ -64,14 +64,14 @@ export default function TradingContact() {
       />
 
       <section className="page-padding bg-white">
-        <div className="container-shell grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+        <div className="container-shell grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-10">
           <TradingReveal>
-            <div className="rounded-[2rem] bg-slate-950 p-8 text-white shadow-xl">
-              <p className="text-sm font-semibold uppercase tracking-[0.28em] text-orange-500">
+            <div className="rounded-[2rem] bg-slate-950 p-6 text-white shadow-xl sm:p-8">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-orange-500 sm:text-sm sm:tracking-[0.28em]">
                 Get In Touch
               </p>
 
-              <h2 className="mt-4 text-4xl font-extrabold leading-tight text-white">
+              <h2 className="mt-4 text-3xl font-extrabold leading-tight text-white sm:text-4xl">
                 Let&apos;s talk about your project
               </h2>
 
@@ -98,7 +98,7 @@ export default function TradingContact() {
           </TradingReveal>
 
           <TradingReveal delay={0.1}>
-            <div className="rounded-[2rem] bg-white p-8 shadow-sm ring-1 ring-slate-200">
+            <div className="rounded-[2rem] bg-white p-5 shadow-sm ring-1 ring-slate-200 sm:p-8">
               {submitted ? (
                 <div className="py-8 text-center">
                   <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-orange-100">

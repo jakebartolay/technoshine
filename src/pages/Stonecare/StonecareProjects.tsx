@@ -1,6 +1,7 @@
-import DivisionProjectsGrid from "@/components/ui/DivisionProjectsGrid";
-import { divisions } from "@/data/divisions";
+import { Navigate } from "react-router-dom";
+
+import { appRoutes } from "@/utils/routes";
 
 export default function StonecareProjects() {
-  return <DivisionProjectsGrid division={divisions.stonecare} />;
+  return <Navigate to={`${appRoutes.stonecare}#gallery`} replace />;
 }

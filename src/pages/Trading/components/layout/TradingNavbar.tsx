@@ -9,12 +9,12 @@ export default function TradingNavbar() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/90 backdrop-blur-lg">
-      <div className="container-shell flex items-center justify-between py-4">
+      <div className="container-shell flex items-center justify-between gap-3 py-3 sm:py-4">
         <Link to={tradingRoutes.home} className="flex items-center gap-3" onClick={() => setOpen(false)}>
           <img
             src={tradingBrandAssets.navbarLogo}
             alt="Technoshine Trading International logo"
-            className="h-9 w-auto max-w-[220px] object-contain sm:h-11 sm:max-w-[280px]"
+            className="h-8 w-auto max-w-[170px] object-contain sm:h-11 sm:max-w-[280px]"
           />
         </Link>
 
@@ -54,7 +54,7 @@ export default function TradingNavbar() {
           type="button"
           onClick={() => setOpen((prev) => !prev)}
           aria-label="Toggle navigation"
-          className="rounded-xl border border-slate-200 px-3 py-2 text-sm font-semibold lg:hidden"
+          className="shrink-0 rounded-xl border border-slate-200 px-3 py-2 text-sm font-semibold lg:hidden"
         >
           Menu
         </button>

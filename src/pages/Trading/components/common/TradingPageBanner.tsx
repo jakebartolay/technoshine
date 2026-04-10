@@ -20,13 +20,13 @@ export default function TradingPageBanner({
         backgroundPosition: "center",
       }}
     >
-      <div className="container-shell py-28 text-white">
+      <div className="container-shell py-20 text-white sm:py-24 lg:py-28">
         <TradingReveal>
-          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.28em] text-orange-300">
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.22em] text-orange-300 sm:text-sm sm:tracking-[0.28em]">
             Industrial Solutions
           </p>
-          <h1 className="max-w-3xl text-4xl font-bold leading-tight md:text-5xl">{title}</h1>
-          <p className="mt-5 max-w-2xl text-sm text-slate-200 md:text-base">{subtitle}</p>
+          <h1 className="max-w-3xl text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">{title}</h1>
+          <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-200 md:mt-5 md:text-base">{subtitle}</p>
         </TradingReveal>
       </div>
     </section>

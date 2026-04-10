@@ -34,19 +34,19 @@ export default function TradingProductDetail() {
             ]}
           />
 
-          <div className="grid gap-10 lg:grid-cols-[320px_1fr]">
+          <div className="grid gap-8 lg:grid-cols-[320px_1fr] lg:gap-10">
             <TradingReveal>
               <TradingProductSidebar products={tradingProducts} currentSlug={product.slug} />
             </TradingReveal>
 
             <div className="space-y-10">
               <TradingReveal>
-                <div className="rounded-[2rem] bg-white p-8 shadow-sm ring-1 ring-slate-200">
-                  <p className="text-sm font-semibold uppercase tracking-[0.28em] text-orange-500">
+                <div className="rounded-[2rem] bg-white p-5 shadow-sm ring-1 ring-slate-200 sm:p-8">
+                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-orange-500 sm:text-sm sm:tracking-[0.28em]">
                     {product.category}
                   </p>
-                  <h2 className="mt-3 text-3xl font-bold">{product.name}</h2>
-                  <p className="mt-5 leading-8 text-slate-600">{product.details}</p>
+                  <h2 className="mt-3 text-2xl font-bold sm:text-3xl">{product.name}</h2>
+                  <p className="mt-5 text-sm leading-7 text-slate-600 sm:text-base sm:leading-8">{product.details}</p>
 
                   <div className="mt-8 grid gap-4 sm:grid-cols-2">
                     {product.specs.map((spec, index) => (

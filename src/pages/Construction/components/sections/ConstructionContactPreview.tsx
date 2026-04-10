@@ -63,7 +63,7 @@ export default function ConstructionContactPreview() {
           </div>
         </div>
 
-        <div className="rounded-[2rem] border border-slate-200 bg-slate-50 p-8 shadow-sm">
+        <div className="rounded-[2rem] border border-slate-200 bg-slate-50 p-5 shadow-sm sm:p-8">
           {submitted ? (
             <div className="py-8 text-center">
               <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-orange-100">
