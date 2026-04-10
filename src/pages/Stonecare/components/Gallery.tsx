@@ -2,52 +2,23 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ZoomIn } from "lucide-react";
 
-import { stonecareImageAssets } from "@/pages/Stonecare/stonecareAssets";
-
-const items = [
-  {
-    src: stonecareImageAssets.gallery.gallery1,
-    title: "Marble Floor",
-    category: "Polishing",
-    description: "Mirror-finish restoration of white Carrara marble with natural veining preserved.",
-  },
-  {
-    src: stonecareImageAssets.gallery.gallery2,
-    title: "Hallway Restoration",
-    category: "Restoration",
-    description: "Full travertine wall and floor restoration in a hallway environment.",
-  },
-  {
-    src: stonecareImageAssets.gallery.gallery3,
-    title: "Hotel Lobby",
-    category: "Polishing",
-    description: "Italian marble columns and grand lobby floor brought back to showroom condition.",
-  },
-  {
-    src: stonecareImageAssets.gallery.gallery4,
-    title: "Floor Transformation",
-    category: "Repair",
-    description: "Cracked, heavily etched stone surface restored to a flawless mirror polish.",
-  },
-  {
-    src: stonecareImageAssets.gallery.gallery5,
-    title: "Black Marble Countertop",
-    category: "Sealing",
-    description: "Deep black marble countertop sealed and polished to reveal gold veining.",
-  },
-  {
-    src: stonecareImageAssets.gallery.gallery6,
-    title: "Marble Staircase",
-    category: "Restoration",
-    description: "Antique marble staircase honed and re-polished to its original elegance.",
-  },
-];
-
-const categories = ["All", "Polishing", "Restoration", "Repair", "Sealing"];
+import {
+  getPublishedStonecareGalleryProjects,
+  subscribeToAdminWorkspaceSync,
+  type StonecareGalleryProject,
+} from "@/admin/adminPersistence";
 
 export function Gallery() {
+  const [items, setItems] = useState<StonecareGalleryProject[]>(() => getPublishedStonecareGalleryProjects());
   const [activeCategory, setActiveCategory] = useState("All");
-  const [lightbox, setLightbox] = useState<typeof items[0] | null>(null);
+  const [lightbox, setLightbox] = useState<StonecareGalleryProject | null>(null);
+
+  useEffect(() => {
+    const syncGallery = () => setItems(getPublishedStonecareGalleryProjects());
+
+    syncGallery();
+    return subscribeToAdminWorkspaceSync(syncGallery);
+  }, []);
 
   useEffect(() => {
     if (!lightbox) {
@@ -101,6 +72,14 @@ export function Gallery() {
       window.removeEventListener("touchmove", preventScroll);
     };
   }, [lightbox]);
+
+  const categories = ["All", ...Array.from(new Set(items.map((item) => item.category)))];
+
+  useEffect(() => {
+    if (!categories.includes(activeCategory)) {
+      setActiveCategory("All");
+    }
+  }, [activeCategory, categories]);
 
   const filtered =
     activeCategory === "All"

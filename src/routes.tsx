@@ -1,3 +1,4 @@
+import { Suspense, lazy, type ReactNode } from "react";
 import { Navigate, createBrowserRouter } from "react-router-dom";
 
 import PageLayout from "@/components/layout/PageLayout";
@@ -24,6 +25,30 @@ import TradingNotFound from "@/pages/Trading/TradingNotFound";
 import TradingProductDetail from "@/pages/Trading/TradingProductDetail";
 import TradingProducts from "@/pages/Trading/TradingProducts";
 import { appRoutes } from "@/utils/routes";
+
+const AdminLayout = lazy(() => import("@/admin/AdminLayout"));
+const AdminOverview = lazy(() => import("@/admin/AdminOverview"));
+const AdminStudio = lazy(() => import("@/admin/AdminStudio"));
+const AdminLibrary = lazy(() => import("@/admin/AdminLibrary"));
+const AdminSettings = lazy(() => import("@/admin/AdminSettings"));
+const AdminNotFound = lazy(() => import("@/admin/AdminNotFound"));
+
+function withSuspense(element: ReactNode) {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex min-h-screen items-center justify-center bg-slate-950 px-4 text-white">
+          <div className="rounded-3xl border border-white/10 bg-white/5 px-6 py-5 text-center backdrop-blur-xl">
+            <p className="text-xs font-bold uppercase tracking-[0.22em] text-slate-300">Admin</p>
+            <p className="mt-3 text-sm font-medium text-slate-100">Loading workspace...</p>
+          </div>
+        </div>
+      }
+    >
+      {element}
+    </Suspense>
+  );
+}
 
 const router = createBrowserRouter([
   {
@@ -65,6 +90,18 @@ const router = createBrowserRouter([
       { path: "faq", element: <TradingFaq /> },
       { path: "contact", element: <TradingContact /> },
       { path: "*", element: <TradingNotFound /> },
+    ],
+  },
+  {
+    path: appRoutes.admin,
+    element: withSuspense(<AdminLayout />),
+    errorElement: withSuspense(<AdminNotFound />),
+    children: [
+      { index: true, element: withSuspense(<AdminOverview />) },
+      { path: "studio", element: withSuspense(<AdminStudio />) },
+      { path: "library", element: withSuspense(<AdminLibrary />) },
+      { path: "settings", element: withSuspense(<AdminSettings />) },
+      { path: "*", element: withSuspense(<AdminNotFound />) },
     ],
   },
   {

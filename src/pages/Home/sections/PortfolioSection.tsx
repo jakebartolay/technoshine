@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 
+import {
+  getPublishedHomePortfolioProjects,
+  subscribeToAdminWorkspaceSync,
+  type HomePortfolioProject,
+} from "@/admin/adminPersistence";
 import PageHeader from "@/components/ui/PageHeader";
-import { featuredProjects } from "@/data/divisions";
-
-const portfolioFilters = ["All", "StoneCare", "Trading", "Construction"] as const;
 
 type ProjectModalProps = {
-  project: (typeof featuredProjects)[number];
+  project: HomePortfolioProject;
   onClose: () => void;
 };
 
@@ -89,13 +91,31 @@ function ProjectModal({ project, onClose }: ProjectModalProps) {
 }
 
 export default function PortfolioSection() {
-  const [selectedProject, setSelectedProject] = useState<(typeof featuredProjects)[number] | null>(null);
-  const [activeFilter, setActiveFilter] = useState<(typeof portfolioFilters)[number]>("All");
+  const [projects, setProjects] = useState<HomePortfolioProject[]>(() => getPublishedHomePortfolioProjects());
+  const [selectedProject, setSelectedProject] = useState<HomePortfolioProject | null>(null);
+  const [activeFilter, setActiveFilter] = useState("All");
+
+  useEffect(() => {
+    const syncProjects = () => setProjects(getPublishedHomePortfolioProjects());
+
+    syncProjects();
+    return subscribeToAdminWorkspaceSync(syncProjects);
+  }, []);
+
+  useEffect(() => {
+    const availableFilters = new Set(["All", ...projects.map((project) => project.category)]);
+
+    if (!availableFilters.has(activeFilter)) {
+      setActiveFilter("All");
+    }
+  }, [activeFilter, projects]);
+
+  const portfolioFilters = ["All", ...Array.from(new Set(projects.map((project) => project.category)))];
 
   const filteredProjects =
     activeFilter === "All"
-      ? featuredProjects
-      : featuredProjects.filter((project) => project.category === activeFilter);
+      ? projects
+      : projects.filter((project) => project.category === activeFilter);
 
   return (
     <section id="portfolio" data-scroll-offset="0" className="bg-white py-20">

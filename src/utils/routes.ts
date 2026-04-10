@@ -16,6 +16,10 @@ export const appRoutes = {
   tradingCases: "/trading/cases",
   tradingFaq: "/trading/faq",
   tradingContact: "/trading/contact",
+  admin: "/admin",
+  adminStudio: "/admin/studio",
+  adminLibrary: "/admin/library",
+  adminSettings: "/admin/settings",
 } as const;
 
 export const homeSectionIds = [
