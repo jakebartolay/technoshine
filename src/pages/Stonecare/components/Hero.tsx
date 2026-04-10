@@ -48,7 +48,7 @@ export function Hero() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="mb-6 text-6xl font-hero font-black leading-[0.88] tracking-tighter text-white glow-text sm:text-7xl md:text-8xl lg:text-9xl"
+          className="mb-5 text-5xl font-hero font-black leading-[0.9] tracking-tighter text-white glow-text sm:mb-6 sm:text-7xl md:text-8xl lg:text-9xl"
         >
           TECHNO<span className="text-primary">SHINE</span>
         </motion.h1>
@@ -57,7 +57,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mb-10 max-w-2xl text-base font-light text-white/80 sm:text-xl"
+          className="mb-8 max-w-xl text-sm leading-6 font-light text-white/80 sm:mb-10 sm:max-w-2xl sm:text-xl sm:leading-normal"
         >
           Restoring marble, granite, and natural stone surfaces to their original brilliance — with precision craftsmanship and decades of expertise.
         </motion.p>
@@ -66,7 +66,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="flex w-full max-w-md flex-col items-center justify-center gap-4 sm:max-w-none sm:flex-row sm:flex-wrap"
+          className="flex w-full max-w-sm flex-col items-center justify-center gap-3 sm:max-w-none sm:flex-row sm:flex-wrap sm:gap-4"
         >
           <button
             type="button"
@@ -75,7 +75,7 @@ export function Hero() {
                 .querySelector("#contact")
                 ?.scrollIntoView({ behavior: "smooth" })
             }
-            className="group relative flex w-full items-center justify-center gap-2 overflow-hidden border border-primary bg-transparent px-6 py-4 text-center font-display font-bold uppercase tracking-[0.18em] text-white shadow-[0_0_15px_rgba(255,107,0,0.2)] transition-shadow duration-300 hover:shadow-[0_0_25px_rgba(255,107,0,0.5)] sm:w-auto sm:px-8 sm:tracking-widest"
+            className="group relative flex w-full items-center justify-center gap-2 overflow-hidden border border-primary bg-transparent px-4 py-3 text-center text-xs font-display font-bold uppercase tracking-[0.14em] text-white shadow-[0_0_15px_rgba(255,107,0,0.2)] transition-shadow duration-300 hover:shadow-[0_0_25px_rgba(255,107,0,0.5)] sm:w-auto sm:px-8 sm:py-4 sm:text-base sm:tracking-widest"
           >
             <span className="absolute inset-0 bg-primary -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out" />
             <span className="relative z-10 flex items-center gap-2">
@@ -86,7 +86,7 @@ export function Hero() {
           <button
             type="button"
             onClick={scrollToServices}
-            className="w-full border border-white/40 bg-transparent px-6 py-4 text-center font-display font-bold uppercase tracking-[0.18em] text-white transition-all duration-300 hover:border-white sm:w-auto sm:px-8 sm:tracking-widest"
+            className="w-full border border-white/40 bg-transparent px-4 py-3 text-center text-xs font-display font-bold uppercase tracking-[0.14em] text-white transition-all duration-300 hover:border-white sm:w-auto sm:px-8 sm:py-4 sm:text-base sm:tracking-widest"
           >
             Our Services
           </button>

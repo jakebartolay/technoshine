@@ -26,7 +26,7 @@ export default function BackToTop() {
     <button
       onClick={handleScrollToTop}
       aria-label="Back to top"
-      className={`group fixed bottom-8 right-8 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-orange-500 text-white shadow-[0_16px_38px_rgba(249,115,22,0.34)] transition-all duration-300 ${
+      className={`group fixed bottom-5 right-5 z-50 flex h-11 w-11 items-center justify-center rounded-full bg-orange-500 text-white shadow-[0_16px_38px_rgba(249,115,22,0.34)] transition-all duration-300 sm:bottom-8 sm:right-8 sm:h-14 sm:w-14 ${
         visible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-4 opacity-0"
       } hover:scale-105 hover:bg-orange-600`}
     >
@@ -34,12 +34,12 @@ export default function BackToTop() {
         <>
           <span className="wave-pulse pointer-events-none absolute inset-0 rounded-full border border-orange-300/70" />
           <span className="wave-pulse wave-pulse-delay pointer-events-none absolute inset-0 rounded-full border border-orange-200/55" />
-          <span className="pointer-events-none absolute inset-[6px] rounded-full bg-orange-400/30 blur-md transition-opacity duration-300 group-hover:opacity-90" />
+          <span className="pointer-events-none absolute inset-[5px] rounded-full bg-orange-400/30 blur-md transition-opacity duration-300 group-hover:opacity-90 sm:inset-[6px]" />
         </>
       ) : null}
 
       {scrolling ? (
-        <svg className="h-5 w-5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="h-4 w-4 animate-spin sm:h-5 sm:w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -48,7 +48,7 @@ export default function BackToTop() {
           />
         </svg>
       ) : (
-        <svg className="relative z-10 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="relative z-10 h-4 w-4 sm:h-5 sm:w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 15l7-7 7 7" />
         </svg>
       )}
