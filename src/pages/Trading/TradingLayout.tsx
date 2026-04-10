@@ -54,8 +54,10 @@ export default function TradingLayout() {
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900">
-      <TradingTopbar />
-      <TradingNavbar />
+      <div data-app-navbar-shell="true" className="sticky top-0 z-50">
+        <TradingTopbar />
+        <TradingNavbar />
+      </div>
       <main>
         <Outlet />
       </main>

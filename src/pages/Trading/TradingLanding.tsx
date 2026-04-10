@@ -66,7 +66,7 @@ export default function TradingLanding() {
             center
           />
 
-          <div className="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          <div className="mx-auto mt-14 grid max-w-6xl gap-6 md:grid-cols-2 lg:grid-cols-3">
             {tradingProducts.map((product, index) => (
               <TradingProductCard
                 key={product.slug}

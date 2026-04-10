@@ -13,7 +13,10 @@ export default function ConstructionNavbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/90 backdrop-blur-xl">
+    <header
+      data-app-navbar-shell="true"
+      className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/90 backdrop-blur-xl"
+    >
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 sm:py-4 lg:px-8">
         <Link
           to={constructionRoutes.home}

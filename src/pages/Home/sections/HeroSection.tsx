@@ -21,10 +21,6 @@ export default function HeroSection() {
 
       <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl items-center px-6 py-24">
         <div className="max-w-3xl">
-          <div className="mb-6 hidden items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-1.5 text-sm font-medium text-orange-200 backdrop-blur-sm sm:inline-flex">
-            <TechnoshineIcon className="h-4 w-4" />
-            Technoshine
-          </div>
 
           <h1 className="mb-6 text-5xl font-bold leading-tight md:text-6xl lg:text-7xl">
             Building <span className="text-orange-400">Excellence</span>

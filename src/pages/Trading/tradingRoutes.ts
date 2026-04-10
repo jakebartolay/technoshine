@@ -1,6 +1,6 @@
 import { appRoutes, buildTradingProductRoute } from "@/utils/routes";
 
-export const technoshineHomeUrl = "https://technoshineph.com";
+export const technoshineHomeUrl = "/";
 
 export const tradingRoutes = {
   home: appRoutes.trading,

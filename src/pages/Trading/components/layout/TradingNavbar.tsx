@@ -8,7 +8,7 @@ export default function TradingNavbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/90 backdrop-blur-lg">
+    <header className="border-b border-slate-200/80 bg-white/90 backdrop-blur-lg">
       <div className="container-shell flex items-center justify-between gap-3 py-3 sm:py-4">
         <Link to={tradingRoutes.home} className="flex items-center gap-3" onClick={() => setOpen(false)}>
           <img
