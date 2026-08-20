@@ -1,19 +1,19 @@
-import hero from "@/assets/construction/brand/hero.png";
-import bataan from "@/assets/construction/projects/bataan.png";
-import campOlivia from "@/assets/construction/projects/camp_olivia.png";
-import commercialCounter from "@/assets/construction/projects/comm_counter.png";
-import commercialFloor from "@/assets/construction/projects/comm_floor.png";
-import construct1 from "@/assets/construction/projects/construct_1.png";
-import construct2 from "@/assets/construction/projects/construct_2.png";
-import davao from "@/assets/construction/projects/davao.png";
-import interior from "@/assets/construction/projects/interior.png";
-import lasPinas from "@/assets/construction/projects/las_pinas.png";
-import lungCenter from "@/assets/construction/projects/lung_center.png";
-import mandaluyong from "@/assets/construction/projects/mandaluyong.png";
-import residential from "@/assets/construction/projects/residential.png";
-import residential2 from "@/assets/construction/projects/residential2.png";
-import supplyInstall from "@/assets/construction/projects/supply_install.png";
-import technoLogo from "@/assets/technoshine/brand/all-technoshine-pages-icon.png";
+import hero from "@/assets/construction/brand/hero.webp";
+import bataan from "@/assets/construction/projects/bataan.webp";
+import campOlivia from "@/assets/construction/projects/camp_olivia.webp";
+import commercialCounter from "@/assets/construction/projects/comm_counter.webp";
+import commercialFloor from "@/assets/construction/projects/comm_floor.webp";
+import construct1 from "@/assets/construction/projects/construct_1.webp";
+import construct2 from "@/assets/construction/projects/construct_2.webp";
+import davao from "@/assets/construction/projects/davao.webp";
+import interior from "@/assets/construction/projects/interior.webp";
+import lasPinas from "@/assets/construction/projects/las_pinas.webp";
+import lungCenter from "@/assets/construction/projects/lung_center.webp";
+import mandaluyong from "@/assets/construction/projects/mandaluyong.webp";
+import residential from "@/assets/construction/projects/residential.webp";
+import residential2 from "@/assets/construction/projects/residential2.webp";
+import supplyInstall from "@/assets/construction/projects/supply_install.webp";
+import technoLogo from "@/assets/technoshine/brand/all-technoshine-pages-icon.webp";
 
 export const constructionBrandAssets = {
   logo: technoLogo,

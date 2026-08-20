@@ -1,1 +1,0 @@
-var e=`/assets/all-technoshine-pages-icon-DU0yurUW.png`;export{e as t};

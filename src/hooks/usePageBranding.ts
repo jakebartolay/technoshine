@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import technoshineIcon from "@/assets/technoshine/brand/all-technoshine-pages-icon.png";
+import technoshineIcon from "@/assets/technoshine/brand/all-technoshine-pages-icon.webp";
 
 export type PageBrandKey = "technoshine" | "stonecare" | "construction" | "trading";
 

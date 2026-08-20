@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Instagram, Facebook, Linkedin } from "lucide-react";
 
-import erwinImage from "@/assets/technoshine/teams/erwin.png";
+import erwinImage from "@/assets/technoshine/teams/erwin.webp";
 
 const team = [
   {
