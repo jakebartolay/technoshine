@@ -2,9 +2,13 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronUp } from "lucide-react";
 
+import { useFooterVisibility } from "@/hooks/useFooterVisibility";
+
 export function BackToTop() {
   const [visible, setVisible] = useState(false);
   const [hovered, setHovered] = useState(false);
+  const isFooterVisible = useFooterVisibility();
+  const showButton = visible && !isFooterVisible;
 
   useEffect(() => {
     const onScroll = () => setVisible(window.scrollY > 400);
@@ -14,7 +18,7 @@ export function BackToTop() {
 
   return (
     <AnimatePresence>
-      {visible && (
+      {showButton && (
         <motion.button
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}

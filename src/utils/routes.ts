@@ -34,6 +34,10 @@ export const homeSectionIds = [
 export type HomeSectionId = (typeof homeSectionIds)[number];
 
 export function buildHomeHashRoute(sectionId: HomeSectionId) {
+  if (sectionId === "home") {
+    return appRoutes.home;
+  }
+
   return `${appRoutes.home}#${sectionId}`;
 }
 

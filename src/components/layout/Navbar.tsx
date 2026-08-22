@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { brandAssets } from "@/assets/siteAssets";
 import { getDivisionByPathname } from "@/data/divisions";
 import { divisionNavigationLinks, mainNavigationLinks } from "@/data/navigation";
+import { useFooterVisibility } from "@/hooks/useFooterVisibility";
 import { appRoutes, homeSectionIds, type HomeSectionId } from "@/utils/routes";
 import { scrollToHash } from "@/utils/scroll";
 
@@ -49,8 +50,12 @@ export default function Navbar() {
   const navigate = useNavigate();
   const dropdownRef = useRef<HTMLLIElement>(null);
   const isHomePage = location.pathname === appRoutes.home;
+  const isFooterVisible = useFooterVisibility();
   const activeSection = useActiveSection(isHomePage);
   const currentDivision = getDivisionByPathname(location.pathname);
+  const navbarVisibilityClass = isFooterVisible
+    ? "pointer-events-none -translate-y-full opacity-0"
+    : "translate-y-0 opacity-100";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -77,6 +82,16 @@ export default function Navbar() {
 
   const handleSectionNavigation = (sectionId: HomeSectionId) => {
     setMobileOpen(false);
+
+    if (sectionId === "home") {
+      if (!isHomePage || location.hash) {
+        navigate(appRoutes.home);
+        return;
+      }
+
+      scrollToHash(sectionId);
+      return;
+    }
 
     if (!isHomePage) {
       navigate(`${appRoutes.home}#${sectionId}`);
@@ -108,6 +123,27 @@ export default function Navbar() {
     });
   };
 
+  const handleMobileSectionNavigation = (sectionId: HomeSectionId) => {
+    setMobileOpen(false);
+
+    if (sectionId === "home") {
+      if (!isHomePage || location.hash) {
+        navigate(appRoutes.home);
+        return;
+      }
+
+      scrollToSectionAfterMenuClose(sectionId);
+      return;
+    }
+
+    if (!isHomePage) {
+      navigate(`${appRoutes.home}#${sectionId}`);
+      return;
+    }
+
+    scrollToSectionAfterMenuClose(sectionId);
+  };
+
   if (currentDivision) {
     const divisionLinks = [
       { label: "Home", to: currentDivision.route },
@@ -116,7 +152,10 @@ export default function Navbar() {
     ];
 
     return (
-      <nav data-app-navbar="true" className="fixed left-0 right-0 top-0 z-50 bg-white shadow-md transition-all duration-300">
+      <nav
+        data-app-navbar="true"
+        className={`fixed left-0 right-0 top-0 z-50 bg-white shadow-md transition-all duration-300 ${navbarVisibilityClass}`}
+      >
         <div data-app-navbar-shell="true" className="mx-auto flex h-20 max-w-7xl items-end justify-between px-6 pb-3">
           <Link to={currentDivision.route} className="flex h-14 items-end justify-center">
             <img src={brandAssets.navLogoDark} alt="Technoshine Logo" className="h-11 w-auto object-contain" />
@@ -201,7 +240,7 @@ export default function Navbar() {
       data-app-navbar="true"
       className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 ${
         !isHomePage || scrolled ? "bg-white shadow-md" : "bg-transparent"
-      }`}
+      } ${navbarVisibilityClass}`}
     >
       <div data-app-navbar-shell="true" className="mx-auto flex h-20 max-w-7xl items-end justify-between px-6 pb-3">
         <Link to={appRoutes.home} className="flex h-14 items-end justify-center">
@@ -304,16 +343,7 @@ export default function Navbar() {
             link.type === "section" ? (
               <button
                 key={link.label}
-                onClick={() => {
-                  setMobileOpen(false);
-
-                  if (!isHomePage) {
-                    navigate(`${appRoutes.home}#${link.sectionId}`);
-                    return;
-                  }
-
-                  scrollToSectionAfterMenuClose(link.sectionId);
-                }}
+                onClick={() => handleMobileSectionNavigation(link.sectionId)}
                 className={`rounded-lg px-3 py-2.5 text-left text-sm font-medium transition-colors ${
                   isSectionActive(link.sectionId)
                     ? "bg-orange-500 text-white"

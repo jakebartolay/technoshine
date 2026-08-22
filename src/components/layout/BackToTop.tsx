@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 
+import { useFooterVisibility } from "@/hooks/useFooterVisibility";
 import { scrollToTop } from "@/utils/scroll";
 
 export default function BackToTop() {
   const [visible, setVisible] = useState(false);
   const [scrolling, setScrolling] = useState(false);
+  const isFooterVisible = useFooterVisibility();
+  const showButton = visible && !isFooterVisible;
 
   useEffect(() => {
     const onScroll = () => setVisible(window.scrollY > 300);
@@ -27,7 +30,7 @@ export default function BackToTop() {
       onClick={handleScrollToTop}
       aria-label="Back to top"
       className={`group fixed bottom-5 right-5 z-50 flex h-11 w-11 items-center justify-center rounded-full bg-orange-500 text-white shadow-[0_16px_38px_rgba(249,115,22,0.34)] transition-all duration-300 sm:bottom-8 sm:right-8 sm:h-14 sm:w-14 ${
-        visible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-4 opacity-0"
+        showButton ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-4 opacity-0"
       } hover:scale-105 hover:bg-orange-600`}
     >
       {!scrolling ? (

@@ -1,4 +1,6 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { ArrowUpRight } from "lucide-react";
+import { FaFacebookF, FaInstagram, FaTiktok, FaYoutube } from "react-icons/fa";
 
 import { brandAssets } from "@/assets/siteAssets";
 import { companyInfo, legalLinks } from "@/data/company";
@@ -6,15 +8,37 @@ import { divisionNavigationLinks, mainNavigationLinks } from "@/data/navigation"
 import { appRoutes, buildHomeHashRoute, type HomeSectionId } from "@/utils/routes";
 import { scrollToHash } from "@/utils/scroll";
 
+const socialLinks = [
+  { label: "Facebook", href: "#", Icon: FaFacebookF },
+  { label: "Instagram", href: "#", Icon: FaInstagram },
+  { label: "TikTok", href: "#", Icon: FaTiktok },
+  { label: "YouTube", href: "#", Icon: FaYoutube },
+];
+
 export default function Footer() {
   const location = useLocation();
   const navigate = useNavigate();
   const footerNavigationLinks = mainNavigationLinks.filter(
     (link) => !(link.type === "route" && link.to === appRoutes.careers),
   );
+  const visibleDivisionLinks = divisionNavigationLinks.filter((link) => link.to !== appRoutes.construction);
+  const footerUtilityLinks = [
+    ...visibleDivisionLinks.map((link) => ({ ...link, type: "route" as const })),
+    ...legalLinks.slice(0, 2).map((link) => ({ ...link, type: "legal" as const })),
+  ];
 
   const handleSectionClick = (sectionId: HomeSectionId) => {
     const hashRoute = buildHomeHashRoute(sectionId);
+
+    if (sectionId === "home") {
+      if (location.pathname !== appRoutes.home || location.hash) {
+        navigate(appRoutes.home);
+        return;
+      }
+
+      scrollToHash(sectionId);
+      return;
+    }
 
     if (location.pathname === appRoutes.home) {
       scrollToHash(sectionId);
@@ -25,155 +49,241 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-gray-950 text-gray-400">
-      <div className="h-1 w-full bg-gradient-to-r from-orange-600 via-orange-400 to-orange-600" />
+    <footer
+      data-app-footer="true"
+      className="relative isolate flex min-h-[100svh] overflow-hidden bg-black px-5 py-5 text-white sm:min-h-screen sm:px-10 sm:py-10 lg:px-12"
+    >
+      <div className="relative z-10 mx-auto flex min-h-[calc(100svh-2.5rem)] w-full max-w-sm flex-col items-center justify-between gap-4 text-center sm:hidden">
+        <div className="flex flex-col items-center">
+          <Link to={appRoutes.home} className="inline-flex items-center justify-center">
+            <img
+              src={brandAssets.navLogoLight}
+              alt={`${companyInfo.name} footer logo`}
+              className="h-9 w-auto max-w-[210px] object-contain"
+            />
+          </Link>
 
-      <div className="mx-auto hidden max-w-7xl grid-cols-3 gap-12 px-6 py-14 md:grid">
+          <div className="mt-4">
+            <h2 className="text-2xl font-black leading-[0.95] tracking-[-0.06em] text-white">
+              Build once.
+            </h2>
+            <p className="font-serif text-2xl italic leading-[0.95] tracking-[-0.07em] text-white">
+              Shine every time.
+            </p>
+          </div>
+        </div>
+
         <div>
-          <h4 className="mb-5 text-sm font-semibold uppercase tracking-widest text-white">Navigation</h4>
-          <ul className="space-y-3">
-            {footerNavigationLinks.map((link) => (
-              <li key={link.label}>
+          <p className="text-xs font-black tracking-[-0.04em] text-white">Menu</p>
+          <div className="mt-2 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-[11px] font-semibold leading-tight text-white/55">
+            {footerNavigationLinks.map((link, index) => (
+              <span key={link.label} className="inline-flex items-center gap-2">
+                {index > 0 ? <span className="text-white/20">|</span> : null}
                 {link.type === "section" ? (
-                  <button
-                    onClick={() => handleSectionClick(link.sectionId)}
-                    className="group flex items-center gap-2 text-sm text-gray-400 transition-colors hover:text-orange-400"
-                  >
-                    <span className="h-1.5 w-1.5 rounded-full bg-orange-500 opacity-0 transition-opacity group-hover:opacity-100" />
+                  <button onClick={() => handleSectionClick(link.sectionId)} className="transition hover:text-orange-400">
                     {link.label}
                   </button>
                 ) : (
-                  <Link
-                    to={link.to}
-                    className="group flex items-center gap-2 text-sm text-gray-400 transition-colors hover:text-orange-400"
-                  >
-                    <span className="h-1.5 w-1.5 rounded-full bg-orange-500 opacity-0 transition-opacity group-hover:opacity-100" />
+                  <Link to={link.to} className="transition hover:text-orange-400">
                     {link.label}
                   </Link>
                 )}
-              </li>
+              </span>
             ))}
-          </ul>
+          </div>
         </div>
 
-        <div className="flex flex-col items-center text-center">
-          <div className="w-40">
+        <div>
+          <p className="text-xs font-black tracking-[-0.04em] text-white">Contact</p>
+          <div className="mt-2 flex flex-col items-center gap-1 text-[11px] font-semibold leading-tight text-white/55">
+            <a href={`mailto:${companyInfo.email}`} className="transition hover:text-orange-400">
+              {companyInfo.email}
+            </a>
+            <a href={`tel:${companyInfo.phone.replace(/\s+/g, "")}`} className="transition hover:text-orange-400">
+              {companyInfo.phone}
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <p className="text-xs font-black tracking-[-0.04em] text-white">Navigation</p>
+          <div className="mt-2 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-[11px] font-semibold leading-tight text-white/55">
+            {footerUtilityLinks.map((link, index) => (
+              <span key={link.label} className="inline-flex items-center gap-2">
+                {index > 0 ? <span className="text-white/20">|</span> : null}
+                {link.type === "route" ? (
+                  <Link to={link.to} className="transition hover:text-orange-400">
+                    {link.label}
+                  </Link>
+                ) : (
+                  <a href={link.href} className="transition hover:text-orange-400">
+                    {link.label}
+                  </a>
+                )}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <p className="text-xs font-black tracking-[-0.04em] text-white">Social Links</p>
+          <div className="mt-2 flex justify-center gap-3">
+            {socialLinks.map(({ label, href, Icon }) => (
+              <a
+                key={label}
+                href={href}
+                aria-label={label}
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/[0.03] text-white/75 transition hover:border-orange-400 hover:bg-orange-400 hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+              >
+                <Icon className="h-4 w-4" />
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <div className="w-full space-y-3">
+          <div className="h-px w-full bg-white/10" />
+          <div>
+            <div className="pointer-events-none select-none whitespace-nowrap text-[clamp(2.1rem,11vw,3rem)] font-black leading-none tracking-[0.015em] text-white/[0.06]">
+              TECHNOSHINE
+            </div>
+            <p className="mt-2 text-[10px] font-semibold tracking-[0.16em] text-white/30">
+              &copy; {new Date().getFullYear()} {companyInfo.name}. All rights reserved
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="relative z-10 mx-auto hidden w-full max-w-6xl flex-col justify-between gap-14 py-8 sm:flex">
+        <div className="mx-auto mt-16 flex max-w-2xl flex-col items-center text-center lg:mt-20">
+          <Link to={appRoutes.home} className="inline-flex items-center justify-center">
             <img
-              src={brandAssets.footerLogo}
+              src={brandAssets.navLogoLight}
               alt={`${companyInfo.name} footer logo`}
-              className="h-auto w-full object-contain"
+              className="h-16 w-auto max-w-[310px] object-contain"
             />
+          </Link>
+
+          <div className="mt-7">
+            <h2 className="text-4xl font-black leading-[0.95] tracking-[-0.06em] text-white">
+              Build once.
+            </h2>
+            <p className="font-serif text-4xl italic leading-[0.95] tracking-[-0.07em] text-white">
+              Shine every time.
+            </p>
           </div>
-          <p className="mt-2 max-w-[220px] text-sm leading-relaxed text-gray-500">{companyInfo.tagline}</p>
-          <div className="mt-5 flex gap-3">
-            <a href="#" className="group flex h-9 w-9 items-center justify-center rounded-full bg-gray-800 transition-colors hover:bg-orange-500">
-              <svg className="h-4 w-4 text-gray-400 transition-colors group-hover:text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
-              </svg>
-            </a>
-            <a href={`mailto:${companyInfo.email}`} className="group flex h-9 w-9 items-center justify-center rounded-full bg-gray-800 transition-colors hover:bg-orange-500">
-              <svg className="h-4 w-4 text-gray-400 transition-colors group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
-            </a>
-            <a href="tel:+639000000000" className="group flex h-9 w-9 items-center justify-center rounded-full bg-gray-800 transition-colors hover:bg-orange-500">
-              <svg className="h-4 w-4 text-gray-400 transition-colors group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-              </svg>
-            </a>
-          </div>
+
+          <p className="mt-7 max-w-xl text-[15px] leading-6 text-white/45">
+            {companyInfo.tagline} From specialist stone restoration to reliable trading supply,
+            Technoshine connects every project with careful service and dependable execution.
+          </p>
+
+          <button
+            onClick={() => handleSectionClick("contact")}
+            className="mt-6 inline-flex items-center gap-2 rounded-xl bg-white px-4 py-3 text-sm font-bold text-black transition hover:bg-orange-400 hover:text-white"
+          >
+            Contact Technoshine
+            <ArrowUpRight className="h-4 w-4" />
+          </button>
         </div>
 
-        <div className="text-right">
-          <h4 className="mb-5 text-sm font-semibold uppercase tracking-widest text-white">Our Services</h4>
-          <ul className="mb-8 space-y-3">
-            {divisionNavigationLinks.map((link) => (
-              <li key={link.label}>
-                <Link
-                  to={link.to}
-                  className="group inline-flex items-center gap-2 text-sm text-gray-400 transition-colors hover:text-orange-400"
+        <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-start">
+          <div className="space-y-8 text-left">
+            <div>
+              <h4 className="mb-6 text-base font-black tracking-[-0.04em] text-white">
+                Menu
+              </h4>
+              <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm font-semibold leading-tight text-white/55">
+                {footerNavigationLinks.map((link, index) => (
+                  <span key={link.label} className="inline-flex items-center gap-2">
+                    {index > 0 ? <span className="text-white/20">|</span> : null}
+                    {link.type === "section" ? (
+                      <button
+                        onClick={() => handleSectionClick(link.sectionId)}
+                        className="transition hover:text-orange-400"
+                      >
+                        {link.label}
+                      </button>
+                    ) : (
+                      <Link
+                        to={link.to}
+                        className="transition hover:text-orange-400"
+                      >
+                        {link.label}
+                      </Link>
+                    )}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <p className="text-base font-black tracking-[-0.04em] text-white">Navigation</p>
+              <div className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm font-semibold leading-tight text-white/55">
+              {footerUtilityLinks.map((link, index) => (
+                <span key={link.label} className="inline-flex items-center gap-2">
+                  {index > 0 ? <span className="text-white/20">|</span> : null}
+                  {link.type === "route" ? (
+                    <Link to={link.to} className="transition hover:text-orange-400">
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <a href={link.href} className="transition hover:text-orange-400">
+                      {link.label}
+                    </a>
+                  )}
+                </span>
+              ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="space-y-8 text-right">
+            <div>
+              <h4 className="mb-3 text-base font-black tracking-[-0.04em] text-white">
+                Contact
+              </h4>
+              <div className="flex flex-wrap items-center justify-end gap-x-2 gap-y-1 text-sm font-semibold leading-tight text-white/55">
+                <a href={`mailto:${companyInfo.email}`} className="transition hover:text-orange-400">
+                  {companyInfo.email}
+                </a>
+                <span className="text-white/20">|</span>
+                <a
+                  href={`tel:${companyInfo.phone.replace(/\s+/g, "")}`}
+                  className="transition hover:text-orange-400"
                 >
-                  {link.label}
-                  <span className="h-1.5 w-1.5 rounded-full bg-orange-500 opacity-0 transition-opacity group-hover:opacity-100" />
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <h4 className="mb-5 text-sm font-semibold uppercase tracking-widest text-white">Legal</h4>
-          <ul className="space-y-3">
-            {legalLinks.map((link) => (
-              <li key={link.label}>
-                <a href={link.href} className="text-xs text-gray-500 transition-colors hover:text-orange-400">
-                  {link.label}
+                  {companyInfo.phone}
                 </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
+              </div>
+            </div>
 
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 py-10 md:hidden">
-        <div className="flex flex-col items-center text-center">
-          <div className="w-28">
-            <img
-              src={brandAssets.footerLogo}
-              alt={`${companyInfo.name} footer logo`}
-              className="h-auto w-full object-contain"
-            />
+            <div>
+              <p className="text-base font-black tracking-[-0.04em] text-white">Social Links</p>
+              <div className="mt-3 flex justify-end gap-3">
+              {socialLinks.map(({ label, href, Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  aria-label={label}
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/[0.03] text-white/75 transition hover:border-orange-400 hover:bg-orange-400 hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                >
+                  <Icon className="h-4 w-4" />
+                </a>
+              ))}
+              </div>
+            </div>
           </div>
-          <p className="mt-2 max-w-[220px] text-sm leading-relaxed text-gray-500">{companyInfo.tagline}</p>
+
+          <div className="h-px w-full bg-white/10 lg:col-span-2" />
         </div>
 
-        <div>
-          <h4 className="mb-5 text-center text-sm font-semibold uppercase tracking-widest text-white">Navigation</h4>
-          <ul className="flex flex-wrap items-center justify-center gap-x-4 gap-y-3">
-            {footerNavigationLinks.map((link) => (
-              <li key={link.label}>
-                {link.type === "section" ? (
-                  <button
-                    onClick={() => handleSectionClick(link.sectionId)}
-                    className="text-sm text-gray-400 transition-colors hover:text-orange-400"
-                  >
-                    {link.label}
-                  </button>
-                ) : (
-                  <Link to={link.to} className="text-sm text-gray-400 transition-colors hover:text-orange-400">
-                    {link.label}
-                  </Link>
-                )}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div>
-          <h4 className="mb-5 text-center text-sm font-semibold uppercase tracking-widest text-white">Our Services</h4>
-          <ul className="mb-8 flex flex-wrap items-center justify-center gap-x-4 gap-y-3">
-            {divisionNavigationLinks.map((link) => (
-              <li key={link.label}>
-                <Link to={link.to} className="text-sm text-gray-400 transition-colors hover:text-orange-400">
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <h4 className="mb-5 text-center text-sm font-semibold uppercase tracking-widest text-white">Legal</h4>
-          <ul className="flex flex-wrap items-center justify-center gap-x-4 gap-y-3">
-            {legalLinks.map((link) => (
-              <li key={link.label}>
-                <a href={link.href} className="text-xs text-gray-500 transition-colors hover:text-orange-400">
-                  {link.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-
-      <div className="border-t border-gray-800">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-6 py-4 text-xs text-gray-600 md:flex-row">
-          <p>&copy; {new Date().getFullYear()} {companyInfo.name}. All rights reserved.</p>
-          <p className="text-gray-700">Built with care in the Philippines.</p>
+        <div className="w-full text-center">
+          <div className="pointer-events-none select-none whitespace-nowrap text-[clamp(2.1rem,11vw,3rem)] font-black leading-none tracking-[0.015em] text-white/[0.06] sm:text-[clamp(4.5rem,10vw,10rem)] sm:tracking-[0.025em]">
+            TECHNOSHINE
+          </div>
+          <p className="mt-2 text-[10px] font-semibold tracking-[0.16em] text-white/30 sm:mt-4 sm:text-xs sm:tracking-[0.22em]">
+            &copy; {new Date().getFullYear()} {companyInfo.name}. All rights reserved
+          </p>
         </div>
       </div>
     </footer>

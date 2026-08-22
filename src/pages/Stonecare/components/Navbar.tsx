@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
+import { useFooterVisibility } from "@/hooks/useFooterVisibility";
 import { stonecareBrandAssets } from "@/pages/Stonecare/stonecareAssets";
 
 const TOP_LOGO_SRC = stonecareBrandAssets.navbarLogo;
@@ -11,6 +12,7 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const isFooterVisible = useFooterVisibility();
 
   const navLinks = [
     { name: "Home", href: "#", section: "home" },
@@ -116,13 +118,13 @@ export function Navbar() {
   return (
     <motion.nav
       initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
+      animate={{ opacity: isFooterVisible ? 0 : 1, y: isFooterVisible ? "-100%" : 0 }}
+      transition={{ duration: 0.35 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
           ? "bg-background/90 backdrop-blur-md border-b border-border py-3 shadow-sm"
           : "backdrop-blur-sm py-5"
-      }`}
+      } ${isFooterVisible ? "pointer-events-none" : ""}`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">

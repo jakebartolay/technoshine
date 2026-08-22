@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 
 import BackToTop from "@/components/layout/BackToTop";
+import { useFooterVisibility } from "@/hooks/useFooterVisibility";
 import { usePageBranding } from "@/hooks/usePageBranding";
 import { appRoutes } from "@/utils/routes";
 import TradingFooter from "@/pages/Trading/components/layout/TradingFooter";
@@ -45,6 +46,7 @@ function getTradingPageTitle(pathname: string) {
 export default function TradingLayout() {
   const location = useLocation();
   const pageTitle = getTradingPageTitle(location.pathname);
+  const isFooterVisible = useFooterVisibility();
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "auto" });
@@ -54,7 +56,12 @@ export default function TradingLayout() {
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900">
-      <div data-app-navbar-shell="true" className="sticky top-0 z-50">
+      <div
+        data-app-navbar-shell="true"
+        className={`sticky top-0 z-50 transition-all duration-300 ${
+          isFooterVisible ? "pointer-events-none -translate-y-full opacity-0" : "translate-y-0 opacity-100"
+        }`}
+      >
         <TradingTopbar />
         <TradingNavbar />
       </div>

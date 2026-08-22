@@ -19,7 +19,6 @@ export const mainNavigationLinks: MainNavigationLink[] = [
   { label: "Team", type: "section", sectionId: "team" },
   { label: "Services", type: "section", sectionId: "services" },
   { label: "Portfolio", type: "section", sectionId: "portfolio" },
-  { label: "Careers", type: "route", to: appRoutes.careers },
   { label: "Contact", type: "section", sectionId: "contact" },
 ];
 

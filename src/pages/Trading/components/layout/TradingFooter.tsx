@@ -1,121 +1,125 @@
 import { Link } from "react-router-dom";
+import { ArrowUpRight } from "lucide-react";
 
 import { companyInfo } from "@/data/company";
 import { tradingProducts } from "@/pages/Trading/data/tradingProducts";
 import { tradingBrandAssets } from "@/pages/Trading/tradingAssets";
 import { technoshineHomeUrl, tradingNavLinks, tradingRoutes } from "@/pages/Trading/tradingRoutes";
-import { appRoutes } from "@/utils/routes";
-
-const otherServices = [
-  {
-    label: "Technoshine Main Page",
-    to: appRoutes.home,
-    description: "Return to the main corporate homepage.",
-  },
-  {
-    label: "Stonecare",
-    to: appRoutes.stonecare,
-    description: "Surface care, restoration, and maintenance solutions.",
-  },
-  {
-    label: "Construction",
-    to: appRoutes.construction,
-    description: "Planning, building, and project delivery services.",
-  },
-] as const;
 
 export default function TradingFooter() {
   return (
-    <footer className="mt-20 bg-slate-950 text-slate-300">
-      <div className="container-shell grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-4">
-        <div>
-          <div className="flex items-center gap-3">
-            <img
-              src={tradingBrandAssets.logo}
-              alt="Technoshine Trading International logo"
-              className="h-10 w-10 object-contain"
-            />
-            <div className="leading-none">
-              <p className="text-lg font-extrabold text-white">TECHNOSHINE</p>
-              <p className="text-[9px] uppercase tracking-[0.35em] text-slate-400">
-                TRADING INTERNATIONAL
+    <footer
+      data-app-footer="true"
+      className="relative isolate mt-20 flex min-h-screen overflow-hidden bg-black px-6 py-10 text-white sm:px-10 lg:px-12"
+    >
+      <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col justify-between gap-16 py-3 sm:py-8">
+        <div className="pointer-events-none absolute bottom-[-0.08em] left-1/2 z-0 w-fit max-w-full -translate-x-1/2 select-none whitespace-nowrap text-center text-[clamp(3.2rem,16vw,13rem)] font-black leading-none tracking-[0.01em] text-white/[0.055] sm:text-[clamp(4.75rem,17vw,13rem)]">
+          Trading
+        </div>
+
+        <div className="relative z-10 grid gap-14 lg:grid-cols-[minmax(280px,430px)_1fr] lg:gap-28">
+          <div className="max-w-[430px]">
+            <Link to={tradingRoutes.home} className="inline-flex items-center gap-3">
+              <img
+                src={tradingBrandAssets.logo}
+                alt="Technoshine Trading International logo"
+                className="h-8 w-8 rounded-lg object-contain"
+              />
+              <span className="text-[15px] font-bold text-white">Technoshine</span>
+              <span className="text-[15px] font-semibold text-white/35">Trading International</span>
+            </Link>
+
+            <div className="mt-7">
+              <h2 className="text-3xl font-black leading-[0.95] tracking-[-0.06em] text-white sm:text-4xl">
+                Supply once.
+              </h2>
+              <p className="font-serif text-3xl italic leading-[0.95] tracking-[-0.07em] text-white sm:text-4xl">
+                Deploy anywhere.
               </p>
+            </div>
+
+            <p className="mt-7 text-sm leading-6 text-white/45 sm:text-[15px]">
+              Reliable road safety products and industrial supply support for infrastructure,
+              private developments, and project-based deployments.
+            </p>
+
+            <Link
+              to={tradingRoutes.contact}
+              className="mt-6 inline-flex items-center gap-2 rounded-xl bg-white px-4 py-3 text-sm font-bold text-black transition hover:bg-orange-500 hover:text-white"
+            >
+              Request quote
+              <ArrowUpRight className="h-4 w-4" />
+            </Link>
+
+            <div className="mt-7 space-y-4 text-xs font-semibold text-white/30">
+              <p>&copy; {new Date().getFullYear()} Technoshine Trading International. All rights reserved</p>
+              <a href={technoshineHomeUrl} className="inline-flex text-white/80 transition hover:text-orange-400">
+                Visit technoshineph.com
+              </a>
             </div>
           </div>
 
-          <p className="mt-5 text-sm leading-7 text-slate-400">
-            Reliable road safety products and industrial supply support for infrastructure,
-            private developments, and project-based deployments.
-          </p>
+          <div className="grid grid-cols-2 gap-x-10 gap-y-12 sm:grid-cols-3 lg:pt-1">
+            <div>
+              <h4 className="mb-6 text-base font-black tracking-[-0.04em] text-white/25">Menu</h4>
+              <ul className="space-y-5">
+                {tradingNavLinks.map((link) => (
+                  <li key={link.path}>
+                    <Link
+                      to={link.path}
+                      className="text-sm font-semibold leading-none text-white transition hover:text-orange-400"
+                    >
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-          <a
-            href={technoshineHomeUrl}
-            className="mt-6 inline-flex rounded-full border border-slate-700 px-5 py-3 text-sm font-semibold text-white transition hover:border-orange-500 hover:text-orange-400"
-          >
-            Visit technoshineph.com
-          </a>
-        </div>
+            <div>
+              <h4 className="mb-6 text-base font-black tracking-[-0.04em] text-white/25">Products</h4>
+              <ul className="space-y-5">
+                {tradingProducts.map((product) => (
+                  <li key={product.slug}>
+                    <Link
+                      to={tradingRoutes.product(product.slug)}
+                      className="text-sm font-semibold leading-none text-white transition hover:text-orange-400"
+                    >
+                      {product.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-        <div>
-          <h4 className="font-semibold text-white">Quick Links</h4>
-          <div className="mt-4 flex flex-col gap-3 text-sm">
-            {tradingNavLinks.map((link) => (
-              <Link key={link.path} to={link.path}>
-                {link.name}
-              </Link>
-            ))}
+            <div className="col-span-2 sm:col-span-1">
+              <h4 className="mb-6 text-base font-black tracking-[-0.04em] text-white/25">Contact</h4>
+              <ul className="space-y-5">
+                <li>
+                  <a
+                    href={`mailto:${companyInfo.email}`}
+                    className="text-sm font-semibold leading-none text-white transition hover:text-orange-400"
+                  >
+                    {companyInfo.email}
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href={`tel:${companyInfo.phone.replace(/\s+/g, "")}`}
+                    className="text-sm font-semibold leading-none text-white transition hover:text-orange-400"
+                  >
+                    {companyInfo.phone}
+                  </a>
+                </li>
+                <li>
+                  <p className="max-w-[220px] text-sm font-semibold leading-6 text-white">
+                    {companyInfo.addressLines.join(" ")}
+                  </p>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
-
-        <div>
-          <h4 className="font-semibold text-white">Products</h4>
-          <div className="mt-4 flex flex-col gap-3 text-sm">
-            {tradingProducts.map((product) => (
-              <Link key={product.slug} to={tradingRoutes.product(product.slug)}>
-                {product.name}
-              </Link>
-            ))}
-          </div>
-        </div>
-
-        <div>
-          <h4 className="font-semibold text-white">Contact</h4>
-          <div className="mt-4 space-y-3 text-sm text-slate-400">
-            <p>Email: {companyInfo.email}</p>
-            <p>Phone: {companyInfo.phone}</p>
-            <p>{companyInfo.addressLines.join(" ")}</p>
-          </div>
-        </div>
-      </div>
-
-      <div className="border-t border-slate-800">
-        <div className="container-shell py-10">
-          <div className="mb-6">
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-orange-400">
-              Other Services
-            </p>
-            <h4 className="mt-2 text-2xl font-bold text-white">
-              Explore the rest of Technoshine
-            </h4>
-          </div>
-
-          <div className="grid gap-4 md:grid-cols-3">
-            {otherServices.map((service) => (
-              <Link
-                key={service.to}
-                to={service.to}
-                className="rounded-3xl border border-slate-800 bg-slate-900/70 p-5 transition hover:border-orange-500 hover:bg-slate-900"
-              >
-                <p className="text-base font-semibold text-white">{service.label}</p>
-                <p className="mt-2 text-sm leading-6 text-slate-400">{service.description}</p>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <div className="border-t border-slate-800 py-5 text-center text-sm text-slate-500">
-        &copy; {new Date().getFullYear()} Technoshine Trading International. All rights reserved.
       </div>
     </footer>
   );
