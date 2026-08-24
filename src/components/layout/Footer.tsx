@@ -51,10 +51,10 @@ export default function Footer() {
   return (
     <footer
       data-app-footer="true"
-      className="relative isolate flex min-h-[100svh] overflow-hidden bg-black px-5 py-5 text-white sm:min-h-screen sm:px-10 sm:py-10 lg:px-12"
+      className="relative isolate flex overflow-hidden bg-black px-4 py-8 text-white sm:min-h-screen sm:px-10 sm:py-10 lg:px-12"
     >
-      <div className="relative z-10 mx-auto flex min-h-[calc(100svh-2.5rem)] w-full max-w-sm flex-col items-center justify-between gap-4 text-center sm:hidden">
-        <div className="flex flex-col items-center">
+      <div className="relative z-10 mx-auto flex w-full max-w-[440px] flex-col items-center gap-7 text-center sm:hidden">
+        <div className="flex w-full flex-col items-center">
           <Link to={appRoutes.home} className="inline-flex items-center justify-center">
             <img
               src={brandAssets.navLogoLight}
@@ -73,7 +73,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div>
+        <div className="w-full">
           <p className="text-xs font-black tracking-[-0.04em] text-white">Menu</p>
           <div className="mt-2 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-[11px] font-semibold leading-tight text-white/55">
             {footerNavigationLinks.map((link, index) => (
@@ -93,7 +93,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div>
+        <div className="w-full">
           <p className="text-xs font-black tracking-[-0.04em] text-white">Contact</p>
           <div className="mt-2 flex flex-col items-center gap-1 text-[11px] font-semibold leading-tight text-white/55">
             <a href={`mailto:${companyInfo.email}`} className="transition hover:text-orange-400">
@@ -105,7 +105,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div>
+        <div className="w-full">
           <p className="text-xs font-black tracking-[-0.04em] text-white">Navigation</p>
           <div className="mt-2 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-[11px] font-semibold leading-tight text-white/55">
             {footerUtilityLinks.map((link, index) => (
@@ -125,7 +125,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div>
+        <div className="w-full">
           <p className="text-xs font-black tracking-[-0.04em] text-white">Social Links</p>
           <div className="mt-2 flex justify-center gap-3">
             {socialLinks.map(({ label, href, Icon }) => (
